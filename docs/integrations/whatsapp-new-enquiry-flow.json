@@ -1,0 +1,250 @@
+{
+  "version": "7.3",
+  "screens": [
+    {
+      "id": "ENQUIRY_FORM",
+      "title": "Add new enquiry",
+      "terminal": true,
+      "success": true,
+      "data": {},
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "Form",
+            "name": "form",
+            "children": [
+              {
+                "type": "TextHeading",
+                "text": "Add new enquiry"
+              },
+              {
+                "type": "TextBody",
+                "text": "Fill in the details below to create a new enquiry record."
+              },
+              {
+                "type": "TextInput",
+                "name": "firstName",
+                "label": "First name",
+                "required": true,
+                "input-type": "text"
+              },
+              {
+                "type": "TextInput",
+                "name": "lastName",
+                "label": "Last name",
+                "required": true,
+                "input-type": "text"
+              },
+              {
+                "type": "TextInput",
+                "name": "email",
+                "label": "Email address",
+                "required": true,
+                "input-type": "email"
+              },
+              {
+                "type": "TextInput",
+                "name": "mobileTelephone",
+                "label": "Telephone",
+                "required": true,
+                "input-type": "phone"
+              },
+              {
+                "type": "TextInput",
+                "name": "addressLine1",
+                "label": "Address",
+                "required": true,
+                "input-type": "text"
+              },
+              {
+                "type": "TextInput",
+                "name": "postcode",
+                "label": "Postcode",
+                "required": true,
+                "input-type": "text"
+              },
+              {
+                "type": "TextBody",
+                "text": "How did you hear about us?"
+              },
+              {
+                "type": "Dropdown",
+                "name": "leadSource",
+                "label": "Lead source",
+                "required": true,
+                "data-source": [
+                  {
+                    "id": "Website",
+                    "title": "Website"
+                  },
+                  {
+                    "id": "Gov.uk website",
+                    "title": "Gov.uk website"
+                  },
+                  {
+                    "id": "Google search",
+                    "title": "Google search"
+                  },
+                  {
+                    "id": "Google Ads",
+                    "title": "Google Ads"
+                  },
+                  {
+                    "id": "Family Mediation Council",
+                    "title": "Family Mediation Council"
+                  },
+                  {
+                    "id": "Word of mouth",
+                    "title": "Word of mouth"
+                  },
+                  {
+                    "id": "Facebook",
+                    "title": "Facebook"
+                  },
+                  {
+                    "id": "TikTok",
+                    "title": "TikTok"
+                  },
+                  {
+                    "id": "LinkedIn",
+                    "title": "LinkedIn"
+                  },
+                  {
+                    "id": "Instagram",
+                    "title": "Instagram"
+                  },
+                  {
+                    "id": "Other",
+                    "title": "Other"
+                  }
+                ]
+              },
+              {
+                "type": "If",
+                "condition": "${form.leadSource} == 'Other'",
+                "then": [
+                  {
+                    "type": "TextInput",
+                    "name": "leadSourceOther",
+                    "label": "Please specify",
+                    "required": true,
+                    "input-type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "TextBody",
+                "text": "Are you referring yourself or a client?"
+              },
+              {
+                "type": "Dropdown",
+                "name": "referralType",
+                "label": "Referral type",
+                "required": true,
+                "data-source": [
+                  {
+                    "id": "Self-referral",
+                    "title": "Self-referral"
+                  },
+                  {
+                    "id": "Client referral",
+                    "title": "Client referral"
+                  }
+                ]
+              },
+              {
+                "type": "TextBody",
+                "text": "What kind of mediation would you like to discuss?"
+              },
+              {
+                "type": "Dropdown",
+                "name": "issueType",
+                "label": "Mediation type",
+                "required": true,
+                "data-source": [
+                  {
+                    "id": "Child arrangements",
+                    "title": "Child arrangements"
+                  },
+                  {
+                    "id": "Property & Finance",
+                    "title": "Property & Finance"
+                  },
+                  {
+                    "id": "Children, property & Finance",
+                    "title": "Children, property & Finance"
+                  },
+                  {
+                    "id": "Grandparent contact",
+                    "title": "Grandparent contact"
+                  },
+                  {
+                    "id": "Other family mediation",
+                    "title": "Other family mediation"
+                  },
+                  {
+                    "id": "Workplace mediation",
+                    "title": "Workplace mediation"
+                  },
+                  {
+                    "id": "Civil mediation",
+                    "title": "Civil mediation"
+                  },
+                  {
+                    "id": "Commercial",
+                    "title": "Commercial"
+                  },
+                  {
+                    "id": "Other",
+                    "title": "Other"
+                  }
+                ]
+              },
+              {
+                "type": "If",
+                "condition": "${form.issueType} == 'Other'",
+                "then": [
+                  {
+                    "type": "TextInput",
+                    "name": "issueTypeOther",
+                    "label": "Please give details",
+                    "required": true,
+                    "input-type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "OptIn",
+                "name": "privacyConsent",
+                "label": "I consent to Brighter Future Mediation storing my information, contacting me about my enquiry, and processing my personal data as described in the Privacy Policy.",
+                "required": true
+              },
+              {
+                "type": "Footer",
+                "label": "Add enquiry",
+                "on-click-action": {
+                  "name": "complete",
+                  "payload": {
+                    "firstName": "${form.firstName}",
+                    "lastName": "${form.lastName}",
+                    "email": "${form.email}",
+                    "mobileTelephone": "${form.mobileTelephone}",
+                    "addressLine1": "${form.addressLine1}",
+                    "postcode": "${form.postcode}",
+                    "leadSource": "${form.leadSource}",
+                    "leadSourceOther": "${form.leadSourceOther}",
+                    "referralType": "${form.referralType}",
+                    "issueType": "${form.issueType}",
+                    "issueTypeOther": "${form.issueTypeOther}",
+                    "privacyConsent": "${form.privacyConsent}"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

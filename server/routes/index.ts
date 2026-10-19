@@ -1,0 +1,118 @@
+import type { Express } from "express";
+import type { Server } from "http";
+import { configureSession } from "../config/session";
+import authRoutes from "./auth.routes";
+import accountRoutes from "./account.routes";
+import dashboardRoutes from "./dashboard.routes";
+import enquiryRoutes from "./enquiry.routes";
+import caseRoutes from "./case.routes";
+import mediationSessionRoutes from "./mediation-session.routes";
+import userRoutes from "./user.routes";
+import mediatorRoutes from "./mediator.routes";
+import contractorRoutes from "./contractor.routes";
+import clientRoutes from "./client.routes";
+import permissionRoutes from "./permission.routes";
+import settingsRoutes from "./settings.routes";
+import partyRoutes from "./party.routes";
+import auditLogRoutes from "./audit-log.routes";
+import serviceTypeRoutes from "./service-type.routes";
+import availabilityRoutes from "./availability.routes";
+import appointmentRoutes from "./appointment.routes";
+import bookingRoutes from "./booking.routes";
+import demographicRoutes from "./demographic.routes";
+import notificationRoutes from "./notification.routes";
+import caseActivityRoutes from "./case-activity.routes";
+import caseCommunicationRoutes from "./case-communication.routes";
+import miamRecordRoutes from "./miam-record.routes";
+import onboardingRoutes from "./onboarding.routes";
+import googleCalendarRoutes from "./google-calendar.routes";
+import caseFilterPresetRoutes from "./case-filter-preset.routes";
+import representativeRoutes from "./representative.routes";
+import clientRepresentativeRoutes from "./client-representative.routes";
+import mediatorProfileRoutes from "./mediator-profile.routes";
+import mediatorApplicantRoutes from "./mediator-applicant.routes";
+import mediatorPipelineRoutes from "./mediator-pipeline.routes";
+import mediatorApplicationLinkRoutes from "./mediator-application-link.routes";
+import contractorPipelineRoutes from "./contractor-pipeline.routes";
+import contractorApplicationLinkRoutes from "./contractor-application-link.routes";
+import apiIntegrationRoutes from "./api-integration.routes";
+import whatsappRoutes from "./whatsapp.routes";
+import whatsappPrivateNoteRoutes from "./whatsapp-private-note.routes";
+import caseWhatsappRoutes from "./case-whatsapp.routes";
+import stripeRoutes from "./stripe.routes";
+import xeroRoutes from "./xero.routes";
+import financeRoutes from "./finance.routes";
+import reportRoutes from "./report.routes";
+import courtFormRoutes from "./court-form.routes";
+import caseProofingRoutes from "./case-proofing.routes";
+import documentRequestRoutes from "./document-request.routes";
+import { notificationRealtimeService } from "../services/notification-realtime.service";
+import mailRoutes from "./mail.routes";
+import complaintRoutes from "./complaint.routes";
+import caseEmailRoutes from "./case-email.routes";
+
+export async function registerRoutes(
+  httpServer: Server,
+  app: Express
+): Promise<Server> {
+  const sessionConfig = configureSession(app);
+  notificationRealtimeService.attach(httpServer, sessionConfig);
+
+  app.use("/api", (_req, res, next) => {
+    res.setHeader("Cache-Control", "no-store");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+    next();
+  });
+
+  app.use(authRoutes);
+  app.use(accountRoutes);
+  app.use(dashboardRoutes);
+  app.use(enquiryRoutes);
+  app.use(caseRoutes);
+  app.use(mediationSessionRoutes);
+  app.use(userRoutes);
+  app.use(mediatorRoutes);
+  app.use(contractorRoutes);
+  app.use(clientRoutes);
+  app.use(permissionRoutes);
+  app.use(settingsRoutes);
+  app.use(partyRoutes);
+  app.use(auditLogRoutes);
+  app.use(serviceTypeRoutes);
+  app.use(availabilityRoutes);
+  app.use(appointmentRoutes);
+  app.use(bookingRoutes);
+  app.use(demographicRoutes);
+  app.use(notificationRoutes);
+  app.use(caseActivityRoutes);
+  app.use(caseCommunicationRoutes);
+  app.use(caseEmailRoutes);
+  app.use(miamRecordRoutes);
+  app.use(onboardingRoutes);
+  app.use(googleCalendarRoutes);
+  app.use(mailRoutes);
+  app.use(complaintRoutes);
+  app.use(caseFilterPresetRoutes);
+  app.use(representativeRoutes);
+  app.use(clientRepresentativeRoutes);
+  app.use(mediatorProfileRoutes);
+  app.use(mediatorApplicantRoutes);
+  app.use(mediatorPipelineRoutes);
+  app.use(mediatorApplicationLinkRoutes);
+  app.use(contractorPipelineRoutes);
+  app.use(contractorApplicationLinkRoutes);
+  app.use(apiIntegrationRoutes);
+  app.use(whatsappRoutes);
+  app.use(whatsappPrivateNoteRoutes);
+  app.use(caseWhatsappRoutes);
+  app.use(stripeRoutes);
+  app.use(xeroRoutes);
+  app.use(financeRoutes);
+  app.use(reportRoutes);
+  app.use(courtFormRoutes);
+  app.use(caseProofingRoutes);
+  app.use(documentRequestRoutes);
+
+  return httpServer;
+}

@@ -1,0 +1,95 @@
+Please fully analyze the current authentication, authorization, and role permission system in this project.
+
+I need a COMPLETE architectural understanding of the existing implementation before redesigning it.
+
+Please inspect and explain:
+
+1. Current User Types
+- What user types currently exist?
+- Where are they defined?
+- Are they enum-based, hardcoded, or database-driven?
+
+2. Authentication Flow
+- How login works
+- JWT/session handling
+- Middleware involved
+- Route protection logic
+- Token validation flow
+
+3. Authorization / Permission System
+- How permissions are currently stored
+- Whether permissions are role-based or hardcoded
+- How frontend menu visibility is controlled
+- How backend API access is controlled
+- Whether permission checks exist on backend APIs
+- Whether permissions are enforced only in UI or also server-side
+
+4. Database Structure
+Please identify all related tables/models including:
+- users
+- roles
+- permissions
+- user_roles
+- settings
+- tenant/company relations
+- any pivot tables
+
+Explain relationships between them.
+
+5. Frontend Permission Logic
+Find:
+- sidebar/menu filtering logic
+- protected routes
+- conditional rendering
+- role checks
+- permission hooks/helpers
+- duplicated logic
+
+6. Backend Permission Logic
+Find:
+- auth middleware
+- permission middleware
+- role guards
+- API validation
+- hardcoded access checks
+
+7. Scalability Analysis
+Explain:
+- limitations of the current system
+- what problems will occur if we add:
+  - Staff users
+  - Departments
+  - Multiple contractor types
+  - Legal/Finance/IT teams
+  - Granular permissions
+  - Multi-role users
+  - Temporary access
+  - Tenant-specific permissions
+
+8. Security Review
+Identify:
+- missing backend enforcement
+- privilege escalation risks
+- frontend-only protection
+- insecure assumptions
+- hardcoded admin bypasses
+
+9. Refactor Readiness
+Please explain:
+- what parts should remain
+- what should be redesigned
+- whether migration to RBAC is possible incrementally
+- estimated complexity of migration
+
+10. Final Recommendation
+Based on the current implementation, recommend:
+- whether to keep the current system
+- partially refactor it
+- or redesign permissions entirely
+
+IMPORTANT:
+- Do NOT modify code yet.
+- Do NOT refactor anything yet.
+- Only analyze and document the current architecture.
+- Provide concrete file paths and code references.
+- Explain the actual current behavior, not assumptions.

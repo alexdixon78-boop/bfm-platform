@@ -1,0 +1,87 @@
+Part One — Mediator journey map 
+
+Each stage triggers data capture or a system action. All stages link to the field specification in Part Two. 
+
+Stage 
+
+What happens 
+
+Data captured 
+
+Who collects 
+
+Timing 
+
+1. Recruitment / approach 
+
+Rebecca approaches mediator OR mediator applies via website. 
+
+Initial enquiry record (name, email, phone, current accreditation status, area of practice). 
+
+Rebecca / Subadmin. 
+
+Day 0 
+
+2. Reference and credential check 
+
+Subadmin requests FMC/CMC verification, PI insurance evidence, DBS, two professional references. 
+
+Credentials, references logged with status (pending / verified / failed). 
+
+Subadmin (Margaret). 
+
+Days 1-14 
+
+3. Contract issued 
+
+Standard freelance mediator agreement (WTA or accredited variant) issued. Time-banking side agreement separately if applicable. 
+
+Contract version, signed date, insurance evidence date, ICO registration. 
+
+Subadmin. 
+
+Days 7-21 
+
+4. Onboarding portal access 
+
+Mediator receives 'Welcome to the team!' onboarding link. Completes profile, demographics (Section B), service offering (Section D), bio. 
+
+Bulk of mediator record populated by mediator self-service. Subadmin verifies and unlocks 'Active' status. 
+
+Mediator + Subadmin. 
+
+Days 14-30 
+
+5. Active on panel 
+
+Mediator visible in case allocation pool. Status flag (Accredited / WTA / WTA + time-banking / Founder) drives which cases admin can route. 
+
+Live case load, calendar availability, CPD log, time-banking hours. 
+
+Mediator + admin. 
+
+Ongoing 
+
+6. Annual review 
+
+Insurance renewal, CPD evidence, DBS refresh, references re-checked (every 3 years), accreditation review. 
+
+Renewal dates, refreshed evidence uploads. 
+
+Subadmin. 
+
+Annually 
+
+7. Off-boarding 
+
+Mediator leaves the panel. Status set to Off-boarded. Cases reassigned. Final invoice processed. Data retained per policy. 
+
+Off-boarding date, reason, exit settlement (per standing rule: London Living Wage x hours within 30 days). 
+
+Subadmin + Rebecca. 
+
+On exit 
+
+ 
+
+Part Two — CRM field specification

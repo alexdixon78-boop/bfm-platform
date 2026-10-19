@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="5200" height="3650" viewBox="0 0 5200 3650" role="img" aria-labelledby="diagram-title diagram-description">
+  <title id="diagram-title">Brighter Future Mediation CRM application architecture and data flow</title>
+  <desc id="diagram-description">Editable architecture diagram showing people and public entry points, the React frontend, Express CRM server, PostgreSQL and AWS S3 storage, background jobs, external integrations, and a sixteen-item data-transfer ledger.</desc>
+
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#3f3f3f" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow-internal" markerWidth="16" markerHeight="16" refX="13" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L14,6 L0,12 z" fill="#5a7d58"/>
+    </marker>
+    <marker id="arrow-outbound" markerWidth="16" markerHeight="16" refX="13" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L14,6 L0,12 z" fill="#b8825a"/>
+    </marker>
+    <marker id="arrow-inbound" markerWidth="16" markerHeight="16" refX="13" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L14,6 L0,12 z" fill="#587b91"/>
+    </marker>
+    <marker id="arrow-neutral" markerWidth="16" markerHeight="16" refX="13" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L14,6 L0,12 z" fill="#676767"/>
+    </marker>
+    <marker id="arrow-neutral-start" markerWidth="16" markerHeight="16" refX="1" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M14,0 L0,6 L14,12 z" fill="#676767"/>
+    </marker>
+    <style><![CDATA[
+      .title { font: 700 72px Arial, sans-serif; fill: #3f3f3f; }
+      .subtitle { font: 400 30px Arial, sans-serif; fill: #676767; }
+      .section-title { font: 700 34px Arial, sans-serif; fill: #3f3f3f; letter-spacing: 1px; }
+      .node-title { font: 700 30px Arial, sans-serif; fill: #333333; }
+      .node-body { font: 400 23px Arial, sans-serif; fill: #555555; }
+      .small { font: 400 20px Arial, sans-serif; fill: #666666; }
+      .badge { font: 700 18px Arial, sans-serif; fill: #3f3f3f; letter-spacing: .4px; }
+      .edge-label { font: 700 20px Arial, sans-serif; fill: #3f3f3f; }
+      .ledger-title { font: 700 28px Arial, sans-serif; fill: #333333; }
+      .ledger-label { font: 700 22px Arial, sans-serif; fill: #5a7d58; }
+      .ledger-body { font: 400 21px Arial, sans-serif; fill: #4f4f4f; }
+      .number { font: 700 23px Arial, sans-serif; fill: #ffffff; text-anchor: middle; dominant-baseline: middle; }
+      .lane { fill: #ffffff; stroke: #d8d3ca; stroke-width: 3; }
+      .node { fill: #fffdf8; stroke: #c9c2b7; stroke-width: 3; }
+      .node-sage { fill: #eef3ec; stroke: #7f997c; stroke-width: 3; }
+      .node-coral { fill: #fbf0ea; stroke: #c58f70; stroke-width: 3; }
+      .node-blue { fill: #edf4f7; stroke: #7895a5; stroke-width: 3; }
+      .ledger { fill: #ffffff; stroke: #d5cec2; stroke-width: 3; }
+      .internal { fill: none; stroke: #5a7d58; stroke-width: 7; marker-end: url(#arrow-internal); }
+      .bidirectional { fill: none; stroke: #676767; stroke-width: 7; marker-start: url(#arrow-neutral-start); marker-end: url(#arrow-neutral); }
+      .outbound { fill: none; stroke: #b8825a; stroke-width: 7; stroke-dasharray: 20 13; marker-end: url(#arrow-outbound); }
+      .inbound { fill: none; stroke: #587b91; stroke-width: 7; stroke-dasharray: 7 12; marker-end: url(#arrow-inbound); }
+      .separator { stroke: #ddd5c9; stroke-width: 3; }
+    ]]></style>
+  </defs>
+
+  <rect width="5200" height="3650" fill="#f7f2e8"/>
+
+  <g id="header">
+    <text id="header-title" class="title" x="120" y="112">BFM CRM — Application Architecture &amp; Data Flow</text>
+    <text id="header-subtitle" class="subtitle" x="120" y="164">Current implemented system • what moves • which direction • why it moves</text>
+    <g id="legend" transform="translate(3160 72)">
+      <rect x="0" y="0" width="1920" height="112" rx="24" fill="#fffdf8" stroke="#d5cec2" stroke-width="3"/>
+      <path class="internal" d="M45 39 H165"/><text class="small" x="190" y="47">Internal flow</text>
+      <path class="outbound" d="M470 39 H590"/><text class="small" x="615" y="47">Outgoing API</text>
+      <path class="inbound" d="M900 39 H1020"/><text class="small" x="1045" y="47">Incoming data / callback</text>
+      <path class="bidirectional" d="M1390 39 H1510"/><text class="small" x="1535" y="47">Moves both ways</text>
+      <text class="small" x="45" y="86">Numbers match the detailed transfer ledger below. Line pattern and labels repeat the meaning of colour.</text>
+    </g>
+  </g>
+
+  <g id="architecture-overview">
+    <rect x="80" y="230" width="5040" height="1310" rx="34" fill="#efe8db" stroke="#d6cdbf" stroke-width="3"/>
+
+    <g id="lane-entry-points">
+      <rect class="lane" x="120" y="280" width="700" height="1190" rx="28" filter="url(#shadow)"/>
+      <text class="section-title" x="165" y="338">1  PEOPLE &amp; ENTRY POINTS</text>
+      <g id="node-team">
+        <rect class="node-sage" x="165" y="390" width="610" height="235" rx="24"/>
+        <text class="node-title" x="205" y="445">Owner, staff &amp; mediators</text>
+        <text class="node-body" x="205" y="490"><tspan x="205" dy="0">Operate the CRM, manage cases,</tspan><tspan x="205" dy="34">appointments, documents, finance</tspan><tspan x="205" dy="34">and communications.</tspan></text>
+        <rect x="205" y="565" width="210" height="34" rx="17" fill="#dce7da"/><text class="badge" x="225" y="589">SESSION + RBAC</text>
+      </g>
+      <g id="node-clients-public">
+        <rect class="node" x="165" y="670" width="610" height="270" rx="24"/>
+        <text class="node-title" x="205" y="725">Clients &amp; public visitors</text>
+        <text class="node-body" x="205" y="770"><tspan x="205">Use the client portal, booking,</tspan><tspan x="205" dy="34">consent, application, demographic</tspan><tspan x="205" dy="34">and other time-limited public forms.</tspan></text>
+        <rect x="205" y="875" width="248" height="34" rx="17" fill="#eee5d8"/><text class="badge" x="225" y="899">SESSION OR SAFE TOKEN</text>
+      </g>
+      <g id="node-website-source">
+        <rect class="node-blue" x="165" y="985" width="610" height="250" rx="24"/>
+        <text class="node-title" x="205" y="1040">BFM public website</text>
+        <text class="node-body" x="205" y="1085"><tspan x="205">Sends contact-form enquiries into</tspan><tspan x="205" dy="34">the CRM through the server-to-server</tspan><tspan x="205" dy="34">website enquiry API.</tspan></text>
+        <rect x="205" y="1180" width="142" height="34" rx="17" fill="#dce8ed"/><text class="badge" x="226" y="1204">API KEY</text>
+      </g>
+      <text class="small" x="165" y="1320"><tspan x="165">Public forms never connect directly</tspan><tspan x="165" dy="30">to the database or file storage.</tspan></text>
+    </g>
+
+    <g id="lane-react-frontend">
+      <rect class="lane" x="900" y="280" width="680" height="1190" rx="28" filter="url(#shadow)"/>
+      <text class="section-title" x="945" y="338">2  REACT WEB INTERFACE</text>
+      <g id="node-react-app">
+        <rect class="node-sage" x="945" y="410" width="590" height="420" rx="28"/>
+        <text class="node-title" x="990" y="470">React + Vite frontend</text>
+        <text class="node-body" x="990" y="520"><tspan x="990">Pages, dashboards and forms for</tspan><tspan x="990" dy="36">authorised roles and public links.</tspan><tspan x="990" dy="55">Sends HTTPS requests with cookies;</tspan><tspan x="990" dy="36">uploads files; receives filtered data</tspan><tspan x="990" dy="36">and route-appropriate downloads.</tspan></text>
+        <rect x="990" y="745" width="265" height="36" rx="18" fill="#dce7da"/><text class="badge" x="1012" y="770">NO DIRECT DATASTORE ACCESS</text>
+      </g>
+      <g id="node-browser-security">
+        <rect class="node" x="945" y="885" width="590" height="300" rx="24"/>
+        <text class="node-title" x="990" y="940">Browser protection boundary</text>
+        <text class="node-body" x="990" y="987"><tspan x="990">• Secure session cookie</tspan><tspan x="990" dy="36">• Role and case-level permissions</tspan><tspan x="990" dy="36">• No-store API responses</tspan><tspan x="990" dy="36">• Time-limited public tokens</tspan><tspan x="990" dy="36">• Authorised case/complaint downloads</tspan></text>
+      </g>
+      <text class="small" x="945" y="1320"><tspan x="945">Production serves the built frontend</tspan><tspan x="945" dy="30">from the same web application.</tspan></text>
+    </g>
+
+    <g id="lane-crm-server">
+      <rect x="1660" y="260" width="1090" height="1230" rx="34" fill="#fffaf2" stroke="#8fa18b" stroke-width="5" filter="url(#shadow)"/>
+      <text class="section-title" x="1710" y="325">3  BFM CRM SERVER — ONE DEPLOYED APPLICATION</text>
+      <g id="node-express-api">
+        <rect class="node-sage" x="1710" y="385" width="990" height="335" rx="26"/>
+        <text class="node-title" x="1755" y="442">Express API &amp; business services</text>
+        <text class="node-body" x="1755" y="490"><tspan x="1755">Authenticates users, validates requests and applies RBAC/case access.</tspan><tspan x="1755" dy="38">Creates and updates CRM records, documents, payments, appointments,</tspan><tspan x="1755" dy="38">emails, calendars, enquiries, WhatsApp conversations and audit logs.</tspan></text>
+        <rect x="1755" y="633" width="214" height="36" rx="18" fill="#dce7da"/><text class="badge" x="1778" y="658">VALIDATION + AUDIT</text>
+        <rect x="1990" y="633" width="205" height="36" rx="18" fill="#dce7da"/><text class="badge" x="2013" y="658">AUTHORIZATION</text>
+        <rect x="2217" y="633" width="260" height="36" rx="18" fill="#dce7da"/><text class="badge" x="2240" y="658">WEBHOOK VERIFICATION</text>
+      </g>
+      <g id="node-websocket">
+        <rect class="node-blue" x="1710" y="770" width="470" height="245" rx="24"/>
+        <text class="node-title" x="1750" y="825">Realtime WebSocket</text>
+        <text class="node-body" x="1750" y="870"><tspan x="1750">Authenticated push channel for full</tspan><tspan x="1750" dy="34">notification updates, read/delete</tspan><tspan x="1750" dy="34">events and permission changes.</tspan></text>
+      </g>
+      <g id="node-background-jobs">
+        <rect class="node-coral" x="2230" y="770" width="470" height="460" rx="24"/>
+        <text class="node-title" x="2270" y="825">In-process background jobs</text>
+        <text class="node-body" x="2270" y="870"><tspan x="2270">Calendar sync and repair</tspan><tspan x="2270" dy="33">Calendar/token health probes</tspan><tspan x="2270" dy="33">Appointment/session expiry</tspan><tspan x="2270" dy="33">Service approval checks</tspan><tspan x="2270" dy="33">Xero invoice status sync</tspan><tspan x="2270" dy="33">Intake follow-up creation</tspan><tspan x="2270" dy="33">Task escalation and emails</tspan></text>
+        <rect x="2270" y="1138" width="275" height="36" rx="18" fill="#f3ded2"/><text class="badge" x="2293" y="1163">RUNS WHILE SERVER IS UP</text>
+      </g>
+      <g id="node-runtime-config">
+        <rect class="node" x="1710" y="1065" width="470" height="165" rx="24"/>
+        <text class="node-title" x="1750" y="1120">Runtime configuration</text>
+        <text class="node-body" x="1750" y="1165"><tspan x="1750">Loads secrets and safe settings</tspan><tspan x="1750" dy="34">before the app starts.</tspan></text>
+      </g>
+      <text class="small" x="1710" y="1320"><tspan x="1710">No external queue or cron service: timers are guarded against overlapping runs.</tspan></text>
+    </g>
+
+    <g id="lane-data-stores">
+      <rect class="lane" x="2830" y="280" width="770" height="1190" rx="28" filter="url(#shadow)"/>
+      <text class="section-title" x="2875" y="338">4  DATA &amp; DOCUMENT STORAGE</text>
+      <g id="node-postgresql">
+        <rect class="node-sage" x="2875" y="395" width="680" height="400" rx="28"/>
+        <text class="node-title" x="2920" y="452">PostgreSQL</text>
+        <text class="node-body" x="2920" y="500"><tspan x="2920">Structured CRM records, users,</tspan><tspan x="2920" dy="34">sessions, cases, sensitive intake,</tspan><tspan x="2920" dy="34">appointments, finance, messages,</tspan><tspan x="2920" dy="34">tasks, audits, file metadata, OAuth</tspan><tspan x="2920" dy="34">tokens and provider identifiers.</tspan></text>
+        <rect x="2920" y="710" width="220" height="36" rx="18" fill="#dce7da"/><text class="badge" x="2944" y="735">SERVER-ONLY ACCESS</text>
+      </g>
+      <g id="node-aws-s3">
+        <rect class="node-coral" x="2875" y="845" width="680" height="355" rx="28"/>
+        <text class="node-title" x="2920" y="902">AWS S3 document storage</text>
+        <text class="node-body" x="2920" y="950"><tspan x="2920">File bytes for case documents, court</tspan><tspan x="2920" dy="34">templates, complaint evidence and</tspan><tspan x="2920" dy="34">mediator approval proofs. Stores MIME</tspan><tspan x="2920" dy="34">type and object key with the object.</tspan></text>
+        <rect x="2920" y="1105" width="240" height="36" rx="18" fill="#f3ded2"/><text class="badge" x="2942" y="1130">APP-PROXIED ACCESS</text>
+        <rect x="3180" y="1105" width="180" height="36" rx="18" fill="#f3ded2"/><text class="badge" x="3202" y="1130">SSE OPTION</text>
+      </g>
+      <g id="storage-note">
+        <rect x="2875" y="1250" width="680" height="145" rx="20" fill="#f5f0e7" stroke="#cfc5b7" stroke-width="2"/>
+        <text class="small" x="2915" y="1295"><tspan x="2915">Current configuration: S3. A local-filesystem</tspan><tspan x="2915" dy="30">driver exists for development fallback only.</tspan><tspan x="2915" dy="30">PostgreSQL keeps file metadata and storage keys.</tspan></text>
+      </g>
+    </g>
+
+    <g id="lane-external-services">
+      <rect class="lane" x="3680" y="280" width="1400" height="1190" rx="28" filter="url(#shadow)"/>
+      <text class="section-title" x="3725" y="338">5  IMPLEMENTED EXTERNAL SERVICES</text>
+      <g id="node-sendgrid"><rect class="node-coral" x="3725" y="390" width="390" height="170" rx="22"/><text class="node-title" x="3765" y="445">SendGrid</text><text class="node-body" x="3765" y="490"><tspan x="3765">Operational email</tspan><tspan x="3765" dy="32">and attachments</tspan></text></g>
+      <g id="node-calendly"><rect class="node-blue" x="4145" y="390" width="390" height="170" rx="22"/><text class="node-title" x="4185" y="445">Calendly</text><text class="node-body" x="4185" y="490"><tspan x="4185">Consultation bookings</tspan><tspan x="4185" dy="32">and signed webhook</tspan></text></g>
+      <g id="node-whatsapp"><rect class="node-blue" x="4565" y="390" width="465" height="170" rx="22"/><text class="node-title" x="4605" y="445">Meta WhatsApp</text><text class="node-body" x="4605" y="490"><tspan x="4605">Messages, flows and</tspan><tspan x="4605" dy="32">signed inbound webhook</tspan></text></g>
+
+      <g id="node-google-calendar"><rect class="node-sage" x="3725" y="610" width="390" height="190" rx="22"/><text class="node-title" x="3765" y="665">Google Calendar</text><text class="node-body" x="3765" y="710"><tspan x="3765">Mediator and BFM</tspan><tspan x="3765" dy="32">calendar read/write</tspan></text><rect x="3765" y="755" width="105" height="28" rx="14" fill="#dce7da"/><text class="badge" x="3782" y="776">OAUTH</text></g>
+      <g id="node-gmail"><rect class="node-sage" x="4145" y="610" width="390" height="190" rx="22"/><text class="node-title" x="4185" y="665">Gmail inbox</text><text class="node-body" x="4185" y="710"><tspan x="4185">Shared-mailbox import</tspan><tspan x="4185" dy="32">with read-only scope</tspan></text><rect x="4185" y="755" width="175" height="28" rx="14" fill="#dce7da"/><text class="badge" x="4202" y="776">READ ONLY</text></g>
+      <g id="node-outlook"><rect class="node-sage" x="4565" y="610" width="465" height="190" rx="22"/><text class="node-title" x="4605" y="665">Microsoft Outlook</text><text class="node-body" x="4605" y="710"><tspan x="4605">Calendar read/write via</tspan><tspan x="4605" dy="32">Microsoft Graph + OAuth</tspan></text></g>
+
+      <g id="node-stripe"><rect class="node-coral" x="3725" y="850" width="390" height="190" rx="22"/><text class="node-title" x="3765" y="905">Stripe</text><text class="node-body" x="3765" y="950"><tspan x="3765">Checkout, payment and</tspan><tspan x="3765" dy="32">signed status webhook</tspan></text></g>
+      <g id="node-xero"><rect class="node-coral" x="4145" y="850" width="390" height="190" rx="22"/><text class="node-title" x="4185" y="905">Xero</text><text class="node-body" x="4185" y="950"><tspan x="4185">Contacts, invoices and</tspan><tspan x="4185" dy="32">signed status webhook</tspan></text></g>
+      <g id="node-aws-config"><rect class="node" x="4565" y="850" width="465" height="190" rx="22"/><text class="node-title" x="4605" y="905">AWS configuration</text><text class="node-body" x="4605" y="950"><tspan x="4605">Secrets Manager and</tspan><tspan x="4605" dy="32">optional Parameter Store</tspan></text></g>
+
+      <g id="node-google-drive-note">
+        <rect x="3725" y="1090" width="1305" height="215" rx="24" fill="#fff8e8" stroke="#bda46a" stroke-width="3" stroke-dasharray="10 8"/>
+        <text class="node-title" x="3770" y="1145">Google Drive — linked resource only</text>
+        <text class="node-body" x="3770" y="1190"><tspan x="3770">Some emails contain a public Google Drive information-folder URL. The CRM does not upload</tspan><tspan x="3770" dy="36">documents to Drive through an API, and Drive is not the CRM document store.</tspan></text>
+      </g>
+      <text class="small" x="3725" y="1380"><tspan x="3725">Implemented operations send and receive the data categories listed in the detailed ledger below.</tspan></text>
+    </g>
+
+    <g id="overview-connections">
+      <path id="edge-01-people-react" class="bidirectional" d="M775 525 H945"/><circle cx="860" cy="492" r="23" fill="#676767"/><text class="number" x="860" y="492">1</text>
+      <path id="edge-02-react-api" class="bidirectional" d="M1535 610 H1710"/><circle cx="1622" cy="577" r="23" fill="#676767"/><text class="number" x="1622" y="577">2</text>
+      <path id="edge-03-websocket-react" class="internal" d="M1710 875 H1608 V770 H1535"/><circle cx="1610" cy="841" r="23" fill="#5a7d58"/><text class="number" x="1610" y="841">3</text>
+      <path id="edge-04-api-postgres" class="bidirectional" d="M2700 520 H2875"/><circle cx="2787" cy="487" r="23" fill="#676767"/><text class="number" x="2787" y="487">4</text>
+      <path id="edge-05-api-s3" class="bidirectional" d="M2700 665 H2775 V1020 H2875"/><circle cx="2788" cy="987" r="23" fill="#676767"/><text class="number" x="2788" y="987">5</text>
+      <path id="edge-06-website-api" class="inbound" d="M775 1110 H850 V1245 H1620 V690 H1710"/><circle cx="1220" cy="1212" r="23" fill="#587b91"/><text class="number" x="1220" y="1212">6</text>
+
+      <path id="edge-external-outbound-rail" class="outbound" d="M2700 405 V370 H5050"/>
+      <rect x="3090" y="346" width="360" height="46" rx="23" fill="#fff6ef" stroke="#c58f70" stroke-width="2"/>
+      <text class="edge-label" x="3120" y="377">OUTGOING API RAIL →</text>
+      <path id="edge-external-inbound-rail" class="inbound" d="M5050 1435 H2780 V700 H2700"/>
+      <rect x="3090" y="1412" width="520" height="46" rx="23" fill="#f0f7fa" stroke="#7895a5" stroke-width="2"/>
+      <text class="edge-label" x="3120" y="1443">← INCOMING DATA / CALLBACK RAIL</text>
+
+      <g id="integration-direction-badges">
+        <g id="badge-07-sendgrid"><circle cx="4070" cy="425" r="25" fill="#b8825a"/><text class="number" x="4070" y="425">7</text><rect x="3970" y="505" width="105" height="30" rx="15" fill="#f3ded2"/><text class="badge" x="3992" y="527">OUT</text></g>
+        <g id="badge-08-calendly"><circle cx="4490" cy="425" r="25" fill="#587b91"/><text class="number" x="4490" y="425">8</text><rect x="4385" y="505" width="135" height="30" rx="15" fill="#dce8ed"/><text class="badge" x="4405" y="527">BOTH</text></g>
+        <g id="badge-14-whatsapp"><circle cx="4985" cy="425" r="25" fill="#587b91"/><text class="number" x="4985" y="425">14</text><rect x="4870" y="505" width="135" height="30" rx="15" fill="#dce8ed"/><text class="badge" x="4890" y="527">BOTH</text></g>
+        <g id="badge-09-google"><circle cx="4070" cy="645" r="25" fill="#676767"/><text class="number" x="4070" y="645">9</text><rect x="3900" y="755" width="135" height="28" rx="14" fill="#dce7da"/><text class="badge" x="3920" y="776">BOTH</text></g>
+        <g id="badge-10-gmail"><circle cx="4490" cy="645" r="25" fill="#587b91"/><text class="number" x="4490" y="645">10</text><rect x="4405" y="755" width="105" height="28" rx="14" fill="#dce8ed"/><text class="badge" x="4432" y="776">IN</text></g>
+        <g id="badge-11-outlook"><circle cx="4985" cy="645" r="25" fill="#676767"/><text class="number" x="4985" y="645">11</text><rect x="4870" y="755" width="135" height="28" rx="14" fill="#dce7da"/><text class="badge" x="4890" y="776">BOTH</text></g>
+        <g id="badge-12-stripe"><circle cx="4070" cy="885" r="25" fill="#b8825a"/><text class="number" x="4070" y="885">12</text><rect x="3970" y="985" width="135" height="30" rx="15" fill="#f3ded2"/><text class="badge" x="3990" y="1007">BOTH</text></g>
+        <g id="badge-13-xero"><circle cx="4490" cy="885" r="25" fill="#b8825a"/><text class="number" x="4490" y="885">13</text><rect x="4390" y="985" width="135" height="30" rx="15" fill="#f3ded2"/><text class="badge" x="4410" y="1007">BOTH</text></g>
+        <g id="badge-15-aws"><circle cx="4985" cy="885" r="25" fill="#587b91"/><text class="number" x="4985" y="885">15</text><rect x="4900" y="985" width="105" height="30" rx="15" fill="#dce8ed"/><text class="badge" x="4927" y="1007">IN</text></g>
+      </g>
+
+      <path id="edge-16-jobs-db" class="bidirectional" d="M2700 1180 H2790 V780 H2875"/><circle cx="2770" cy="1145" r="23" fill="#676767"/><text class="number" x="2770" y="1145">16</text>
+    </g>
+  </g>
+
+  <g id="data-transfer-ledger">
+    <text class="section-title" x="120" y="1605">CONNECTION-BY-CONNECTION DATA TRANSFER LEDGER</text>
+    <text class="small" x="1210" y="1605">Each card states direction, data, purpose and transfer method. No real customer data or secret values are shown.</text>
+
+    <g id="flow-card-01" transform="translate(100 1640)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#676767"/><text class="number" x="52" y="52">1</text>
+      <text class="ledger-title" x="100" y="60">People ↔ React interface</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">DATA  </tspan><tspan>Credentials; authorised case, enquiry, client,</tspan><tspan x="38" dy="31">appointment and finance views; forms, messages, file</tspan><tspan x="38" dy="31">uploads/downloads; session cookie and safe-link tokens.</tspan><tspan class="ledger-label" x="38" dy="40">WHY  </tspan><tspan>Operate the CRM, portal, booking and public forms.</tspan><tspan class="ledger-label" x="38" dy="40">HOW  </tspan><tspan>Browser HTTPS; route-specific session/RBAC or safe token.</tspan></text>
+    </g>
+    <g id="flow-card-02" transform="translate(1370 1640)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#676767"/><text class="number" x="52" y="52">2</text>
+      <text class="ledger-title" x="100" y="60">React ↔ Express API</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">DATA  </tspan><tspan>Validated JSON requests/responses, cookies, filters,</tspan><tspan x="38" dy="31">role-appropriate CRM data, form submissions, file bytes</tspan><tspan x="38" dy="31">and route-appropriate download streams.</tspan><tspan class="ledger-label" x="38" dy="40">WHY  </tspan><tspan>Apply business rules and keep data access server-side.</tspan><tspan class="ledger-label" x="38" dy="40">HOW  </tspan><tspan>HTTPS API; no-store responses; upload limit enforced.</tspan></text>
+    </g>
+    <g id="flow-card-03" transform="translate(2640 1640)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#5a7d58"/><text class="number" x="52" y="52">3</text>
+      <text class="ledger-title" x="100" y="60">WebSocket → React</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">DATA  </tspan><tspan>Full created/updated notification records for the matched</tspan><tspan x="38" dy="31">audience; delete/read IDs or counters; permission-role lists.</tspan><tspan class="ledger-label" x="38" dy="40">WHY  </tspan><tspan>Update relevant screens without waiting for reload.</tspan><tspan class="ledger-label" x="38" dy="40">HOW  </tspan><tspan>Session-authenticated WebSocket; server filters recipients</tspan><tspan x="38" dy="31">before sending each event.</tspan></text>
+    </g>
+    <g id="flow-card-04" transform="translate(3910 1640)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#676767"/><text class="number" x="52" y="52">4</text>
+      <text class="ledger-title" x="100" y="60">CRM ↔ PostgreSQL</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">DATA  </tspan><tspan>Users/sessions; clients, cases and sensitive intake;</tspan><tspan x="38" dy="31">appointments, finance, communications, tasks and audits;</tspan><tspan x="38" dy="31">file metadata, OAuth tokens and provider identifiers.</tspan><tspan class="ledger-label" x="38" dy="40">WHY  </tspan><tspan>Persist and query the CRM's structured system of record.</tspan><tspan class="ledger-label" x="38" dy="40">HOW  </tspan><tspan>Server-side Drizzle/pg queries and transactions.</tspan></text>
+    </g>
+
+    <g id="flow-card-05" transform="translate(100 2070)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#676767"/><text class="number" x="52" y="52">5</text>
+      <text class="ledger-title" x="100" y="60">CRM ↔ AWS S3</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">DATA  </tspan><tspan>File bytes, MIME type, generated filename and object key</tspan><tspan x="38" dy="31">for case documents, court templates, complaint evidence</tspan><tspan x="38" dy="31">and mediator service-approval proofs.</tspan><tspan class="ledger-label" x="38" dy="40">WHY  </tspan><tspan>Store and retrieve documents separately from DB records.</tspan><tspan class="ledger-label" x="38" dy="40">HOW  </tspan><tspan>Private S3 Put/Get/Delete. Case and complaint downloads are</tspan><tspan x="38" dy="31">authorised; the mediator-proof proxy is not session-gated.</tspan></text>
+    </g>
+    <g id="flow-card-06" transform="translate(1370 2070)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#587b91"/><text class="number" x="52" y="52">6</text>
+      <text class="ledger-title" x="100" y="60">BFM website → CRM</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">DATA  </tspan><tspan>Contact and enquiry fields submitted on the website,</tspan><tspan x="38" dy="31">including identity/contact details, referral/issue details,</tspan><tspan x="38" dy="31">consent state and an API credential in the request.</tspan><tspan class="ledger-label" x="38" dy="40">WHY  </tspan><tspan>Create linked enquiry, client, party and case records.</tspan><tspan class="ledger-label" x="38" dy="40">HOW  </tspan><tspan>Server-to-server HTTPS POST protected by hashed API key.</tspan></text>
+    </g>
+    <g id="flow-card-07" transform="translate(2640 2070)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#b8825a"/><text class="number" x="52" y="52">7</text>
+      <text class="ledger-title" x="100" y="60">CRM → SendGrid</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">DATA  </tspan><tspan>Recipient email; BFM sender name/address; subject; full HTML</tspan><tspan x="38" dy="31">body containing names, case refs, dates, service/appointment</tspan><tspan x="38" dy="31">details and links/tokens; optional base64 ICS or PDF attachments.</tspan><tspan class="ledger-label" x="38" dy="40">WHY  </tspan><tspan>Send invites, acknowledgements, reminders, forms and alerts.</tspan><tspan class="ledger-label" x="38" dy="40">HOW  </tspan><tspan>Authenticated SendGrid Mail Send API call.</tspan></text>
+    </g>
+    <g id="flow-card-08" transform="translate(3910 2070)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#587b91"/><text class="number" x="52" y="52">8</text>
+      <text class="ledger-title" x="100" y="60">Calendly ↔ CRM</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">IN  </tspan><tspan>Signed event/invitee payload, booking/contact/time/answers;</tspan><tspan x="38" dy="31">missing details may be enriched from Calendly's invitee API.</tspan><tspan class="ledger-label" x="38" dy="40">OUT  </tspan><tspan>Organisation, callback URL, scope, event types and signing key.</tspan><tspan class="ledger-label" x="38" dy="40">WHY  </tspan><tspan>Create consultation enquiries and manage the webhook.</tspan><tspan class="ledger-label" x="38" dy="40">HOW  </tspan><tspan>Signed webhook in; PAT API subscription/enrichment calls.</tspan></text>
+    </g>
+
+    <g id="flow-card-09" transform="translate(100 2500)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#676767"/><text class="number" x="52" y="52">9</text>
+      <text class="ledger-title" x="100" y="60">Google Calendar ↔ CRM</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">DATA  </tspan><tspan>OAuth tokens/scopes; event title, description, location,</tspan><tspan x="38" dy="31">start/end; attendee name/email/response; availability,</tspan><tspan x="38" dy="31">calendar and provider event identifiers.</tspan><tspan class="ledger-label" x="38" dy="40">WHY  </tspan><tspan>Read availability and create/update/cancel booking events.</tspan><tspan class="ledger-label" x="38" dy="40">HOW  </tspan><tspan>Google OAuth 2.0 and Calendar API.</tspan></text>
+    </g>
+    <g id="flow-card-10" transform="translate(1370 2500)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#587b91"/><text class="number" x="52" y="52">10</text>
+      <text class="ledger-title" x="100" y="60">Gmail → CRM</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">DATA  </tspan><tspan>Sender name/email, To and CC, subject, received time,</tspan><tspan x="38" dy="31">message/thread IDs, snippet, plain text, sanitised HTML and</tspan><tspan x="38" dy="31">inline-image content/metadata.</tspan><tspan class="ledger-label" x="38" dy="40">WHY  </tspan><tspan>Import selected shared-inbox messages into CRM workflow.</tspan><tspan class="ledger-label" x="38" dy="40">HOW  </tspan><tspan>Google OAuth with Gmail read-only scope; no send access.</tspan></text>
+    </g>
+    <g id="flow-card-11" transform="translate(2640 2500)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#676767"/><text class="number" x="52" y="52">11</text>
+      <text class="ledger-title" x="100" y="60">Outlook Calendar ↔ CRM</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">DATA  </tspan><tspan>OAuth tokens, account email/identity; event subject/body,</tspan><tspan x="38" dy="31">location, start/end, attendee names/emails/responses,</tspan><tspan x="38" dy="31">availability and Microsoft event identifiers.</tspan><tspan class="ledger-label" x="38" dy="40">WHY  </tspan><tspan>Use Outlook as a mediator's active calendar provider.</tspan><tspan class="ledger-label" x="38" dy="40">HOW  </tspan><tspan>Microsoft OAuth 2.0 and Graph API.</tspan></text>
+    </g>
+    <g id="flow-card-12" transform="translate(3910 2500)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#b8825a"/><text class="number" x="52" y="52">12</text>
+      <text class="ledger-title" x="100" y="60">Stripe ↔ CRM</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">OUT  </tspan><tspan>Customer email, party name, case ref, service, amount/</tspan><tspan x="38" dy="31">currency, internal IDs, booking token and return URLs.</tspan><tspan class="ledger-label" x="38" dy="40">IN  </tspan><tspan>Checkout/payment IDs and signed completion, expiry, failure</tspan><tspan x="38" dy="31">or refund event/status data.</tspan><tspan class="ledger-label" x="38" dy="40">WHY/HOW  </tspan><tspan>Collect/reconcile payment via API + signed webhook.</tspan></text>
+    </g>
+
+    <g id="flow-card-13" transform="translate(100 2930)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#b8825a"/><text class="number" x="52" y="52">13</text>
+      <text class="ledger-title" x="100" y="60">Xero ↔ CRM</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">OUT  </tspan><tspan>Client name/email, case ref, service/line description,</tspan><tspan x="38" dy="31">amount/currency, account/tax settings and optional branding.</tspan><tspan class="ledger-label" x="38" dy="40">IN  </tspan><tspan>Contact/invoice IDs, invoice number/link, status and paid date.</tspan><tspan class="ledger-label" x="38" dy="40">WHY/HOW  </tspan><tspan>Create/reconcile invoices via OAuth API and signed</tspan><tspan x="38" dy="31">webhook; scheduled job also checks pending invoices.</tspan></text>
+    </g>
+    <g id="flow-card-14" transform="translate(1370 2930)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#587b91"/><text class="number" x="52" y="52">14</text>
+      <text class="ledger-title" x="100" y="60">Meta WhatsApp ↔ CRM</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">DATA  </tspan><tspan>Phone/display name; text, template, button and flow content;</tspan><tspan x="38" dy="31">enquiry answers; message IDs; media ID, filename and MIME.</tspan><tspan class="ledger-label" x="38" dy="40">WHY  </tspan><tspan>Automate enquiries, verify cases and support conversations.</tspan><tspan class="ledger-label" x="38" dy="40">HOW  </tspan><tspan>Cloud API out; app-secret-signed webhook in. The CRM records</tspan><tspan x="38" dy="31">media metadata only—it does not download the media file.</tspan></text>
+    </g>
+    <g id="flow-card-15" transform="translate(2640 2930)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#587b91"/><text class="number" x="52" y="52">15</text>
+      <text class="ledger-title" x="100" y="60">AWS configuration → CRM</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">DATA  </tspan><tspan>Database/session secrets, provider credentials, webhook</tspan><tspan x="38" dy="31">verification secrets and safe runtime/storage configuration.</tspan><tspan class="ledger-label" x="38" dy="40">WHY  </tspan><tspan>Configure the server without embedding secrets in code.</tspan><tspan class="ledger-label" x="38" dy="40">HOW  </tspan><tspan>Secrets Manager GetSecretValue and optional decrypted</tspan><tspan x="38" dy="31">Parameter Store path read during startup. Values are not shown.</tspan></text>
+    </g>
+    <g id="flow-card-16" transform="translate(3910 2930)">
+      <rect class="ledger" width="1190" height="390" rx="24"/><circle cx="52" cy="52" r="30" fill="#5a7d58"/><text class="number" x="52" y="52">16</text>
+      <text class="ledger-title" x="100" y="60">Background jobs ↔ data/providers</text><line class="separator" x1="38" y1="88" x2="1152" y2="88"/>
+      <text class="ledger-body" x="38" y="128"><tspan class="ledger-label">DATA  </tspan><tspan>Due appointments/tasks, calendar tokens/events, approval</tspan><tspan x="38" dy="31">dates, invoice IDs/statuses and reminder recipient/content.</tspan><tspan class="ledger-label" x="38" dy="40">WHY  </tspan><tspan>Sync/repair calendars; probe health; expire holds; check</tspan><tspan x="38" dy="31">approvals/invoices; create/escalate follow-ups and send email.</tspan><tspan class="ledger-label" x="38" dy="40">HOW  </tspan><tspan>Guarded in-process timers; database + provider APIs.</tspan></text>
+    </g>
+  </g>
+
+  <g id="footer-notes">
+    <rect x="100" y="3380" width="5000" height="200" rx="24" fill="#fff8e8" stroke="#bda46a" stroke-width="3"/>
+    <text class="ledger-title" x="145" y="3435">Important boundary: Google Drive is not CRM document storage</text>
+    <text class="ledger-body" x="145" y="3480"><tspan x="145">The enquiry acknowledgement email may include a link to BFM information held in a Google Drive folder.</tspan><tspan x="145" dy="34">For this Drive resource, the CRM includes its URL in the HTML email; it does not send Drive file contents.</tspan><tspan x="145" dy="34">There is no implemented CRM upload API to Google Drive. Case documents and evidence are stored in AWS S3, with metadata and access controls held in PostgreSQL.</tspan></text>
+    <text class="small" x="145" y="3625">Source basis: current server routes, services, jobs and shared schema • Diagram contains categories only—no live credentials, secrets or customer records.</text>
+    <text class="small" x="4860" y="3625">v1 • 2026-09-25</text>
+  </g>
+</svg>

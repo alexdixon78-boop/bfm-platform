@@ -1,0 +1,243 @@
+
+Section D — Service offering and case allocation 
+
+Mediation types willing to take 
+
+med_types 
+
+Service offering 
+
+Multi-select 
+
+Family | Workplace | Civil | Commercial | Other (specify). Drives which cases admin can route to this mediator. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator, Client (via bio) 
+
+Family sub-types 
+
+med_family_subtypes 
+
+Service offering 
+
+Multi-select 
+
+Child arrangements | Property and finances (P&F) | Both child and P&F | AIM (All Issues Mediation) | Grandparent | Other family. Display only when Family selected. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Workplace sub-types 
+
+med_workplace_subtypes 
+
+Service offering 
+
+Multi-select 
+
+Employee-employee | Manager-employee | Team conflict | Grievance | Harassment or bullying | Redundancy | Disciplinary | Other. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Civil sub-types 
+
+med_civil_subtypes 
+
+Service offering 
+
+Multi-select 
+
+Same options as client doc R33. Display only when Civil selected. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Commercial sub-types 
+
+med_commercial_subtypes 
+
+Service offering 
+
+Multi-select 
+
+Same options as client doc R34. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Other / coaching sub-types 
+
+med_other_subtypes 
+
+Service offering 
+
+Multi-select 
+
+SEND | Education | Restorative | Coaching individual | Coaching couple | Coaching team | Other. 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Specialisms 
+
+med_specialisms 
+
+Service offering / Bio 
+
+Multi-select 
+
+Hybrid mediation | Shuttle mediation | Online-only | Vulnerable parties | LGBTQ+ specialism | Faith-sensitive | Trauma-informed | Children's voice | High-conflict | SEND | Domestic abuse aware | Other (self-add). Multi-select with self-add. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator, Client (via bio) 
+
+Court Form Packages 
+
+med_court_forms 
+
+Service offering 
+
+Multi-select 
+
+Form A | C100 | FM1 (mediator-issued) | None. Mediators issuing court packages must have specific training (per Reference Guide, Manpreet leads internal training on Form A and C100). 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+MoJ voucher scheme participating? 
+
+med_moj_voucher 
+
+Service offering 
+
+Boolean 
+
+Yes / No. Required for MoJ voucher scheme cases (FMC-accredited mediators only). 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Solo or co-mediation status (per case type) 
+
+med_solo_status 
+
+Service offering 
+
+Composite per case type 
+
+For each case type: Solo | Conditional (co-mediation required) | Not available | By request. Maps to the Reference Guide quick reference matrix. Drives admin allocation logic. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Can supervise WTAs? 
+
+med_can_supervise 
+
+Service offering 
+
+Boolean 
+
+Yes / No. Currently only Davina Clements and Kate Miller. Per Reference Guide rule: only specific accredited mediators may supervise. Used by admin to find valid co-mediator pairings. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Co-mediation cap (sessions per week) 
+
+med_comed_cap 
+
+Service offering 
+
+Number 
+
+Default 1 per week per Reference Guide. Adjustable per mediator. Capacity rule. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+High-conflict cases (yes/no) 
+
+med_high_conflict 
+
+Service offering 
+
+Boolean 
+
+Mediator opts in or out. Used in allocation logic. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Safeguarding-flagged cases (yes/no) 
+
+med_safeguarding_cases 
+
+Service offering 
+
+Boolean 
+
+Mediator opts in or out. Used in allocation. Default No until specifically opted in. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Geographic coverage 
+
+med_geo 
+
+Service offering 
+
+Multi-select 
+
+BFM is online-first; this captures any in-person availability or referral routing geography. Multi-select counties / regions / "online only" / "anywhere". 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator, Client (via bio) 
+

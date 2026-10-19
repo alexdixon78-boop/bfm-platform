@@ -1,0 +1,147 @@
+
+Section B — Equality, diversity and inclusion (EDI reporting only) 
+
+Sex 
+
+med_sex 
+
+Profile (private) 
+
+Dropdown 
+
+Female | Male | Prefer not to say. 
+
+Rec 
+
+Onboarding 
+
+Superadmin only 
+
+Gender identity 
+
+med_gender_identity 
+
+Profile (private) 
+
+Dropdown 
+
+Woman | Man | Non-binary | Self-describe (free text below) | Prefer not to say. 
+
+Rec 
+
+Onboarding 
+
+Superadmin only 
+
+Gender — self-description 
+
+med_gender_self 
+
+Profile (private) 
+
+Text 
+
+Display only when "Self-describe" selected. Max 200 chars. 
+
+N 
+
+Onboarding 
+
+Superadmin only 
+
+Ethnicity 
+
+med_ethnicity 
+
+Profile (private) 
+
+Dropdown 
+
+Full ONS 2021 Census categories (W1-O9 + NS Prefer not to say). Same dropdown as client doc Appendix A. 
+
+Rec 
+
+Onboarding 
+
+Superadmin only 
+
+Disability or health condition 
+
+med_disability 
+
+Profile (private) 
+
+Multi-select 
+
+None | Blindness or partial sight | Deafness or partial hearing | Mental health condition | Learning disability or difficulty | Memory or cognitive difficulties | Autistic spectrum condition | Neurodivergent (ADHD, dyslexia, dyspraxia, other) | Long-term physical condition | Other (specify) | Prefer not to say. 
+
+Rec 
+
+Onboarding 
+
+Superadmin only 
+
+First language 
+
+med_first_language 
+
+Profile (private) 
+
+Dropdown 
+
+English | Welsh | Polish | Urdu | Punjabi | Bengali | Gujarati | Arabic | Somali | Romanian | Other (specify) | Prefer not to say. 
+
+Rec 
+
+Onboarding 
+
+Superadmin only 
+
+Country of birth 
+
+med_country_of_birth 
+
+Profile (private) 
+
+Dropdown 
+
+Same options as client doc. ONS 2021 Census aligned. 
+
+Rec 
+
+Onboarding 
+
+Superadmin only 
+
+Religion or belief 
+
+med_religion 
+
+Profile (private) 
+
+Dropdown 
+
+Optional. ONS 2021 Census categories. 
+
+N 
+
+Onboarding 
+
+Superadmin only 
+
+Sexual orientation 
+
+med_sexuality 
+
+Profile (private) 
+
+Dropdown 
+
+Optional. ONS 2021 Census categories. 
+
+N 
+
+Onboarding 
+
+Superadmin only 
+

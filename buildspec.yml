@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Logging in to Amazon ECR.."
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_URI
+  build:
+    commands:
+      - echo "Build started on $(date)"
+      - echo "Building the Docker image with Build Args..."
+      # ADD THESE --build-arg LINES BELOW :
+      - |
+        docker build -t $ECR_URI .
+  post_build:
+    commands:
+      - echo "Build completed on $(date)"
+      - echo "Pushing the Docker image..."
+      - docker push $ECR_URI
+      - echo "Writing image definitions file for frontend-prod..."
+      - printf '[{"name":"dev-frontend-backend","imageUri":"%s"}]' $ECR_URI > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json

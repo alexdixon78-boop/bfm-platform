@@ -1,0 +1,53 @@
+Building on the existing foundation, now add the Cases and Enquiries system.
+
+ENQUIRIES MODULE:
+- An "Enquiries" page listing all incoming enquiries in a table with columns: 
+  Date received, Name, Contact method (website form or WhatsApp), 
+  Issue type, Status (New / Reviewed / Converted / Rejected)
+- A button "Convert to case" on each enquiry row
+- An "Add enquiry manually" button at the top right
+- Clicking an enquiry opens a slide-out panel (not a new page) showing 
+  full enquiry details
+
+CASES MODULE:
+- A "Cases" page listing all active cases with columns:
+  Case reference number, Client A name, Client B name (if added), 
+  Mediator assigned, Current stage, Last updated, Status
+- Case stages must follow these exact workflows:
+  Enquiry received > Party A MIAM booked > Party A MIAM complete > 
+  Party B invited > Party B MIAM booked > Party B MIAM complete > 
+  Joint sessions > Mediation successful (partial/full agreement) Referral to partner (solicitor, divorce coach, therapist etc) >  Case closed
+- Enquiry received > Party A MIAM booked > Party A MIAM complete > 
+  Mediation unsuitable > Court form requested > Court form sent > Case closed
+- Enquiry received > Party A MIAM booked > Party A MIAM complete > 
+  Mediation unsuitable > Court application package requested > Court Application Package completed and form sent > Case closed
+
+- Enquiry received > Enquiry only (give reason e.g. Legal Aid, advice only etc) 
+
+(cover all workflows contained in customer journey flowchart attached).
+
+
+
+- Clicking a case opens a full case detail page with tabs:
+  Overview, Appointments, Documents, Payments, Communications, Notes
+
+CASE DETAIL PAGE (Overview tab):
+- Show case reference number prominently at the top
+- Party A section: name, email, phone, portal status (invited/active/inactive)
+- Party B section: same fields, with a note that Party B is only added 
+  after Party A completes MIAM
+- Assigned mediator (with a button to assign if not yet assigned)
+- Case stage progress bar showing the workflow above
+- Quick action buttons: Book appointment, Send message, Generate invoice, 
+  Upload document
+
+DATA:
+- All data stored in SQLite database
+- Generate 5 realistic dummy cases and 8 dummy enquiries with UK names
+
+PRIVACY RULE (critical):
+- Party A and Party B data must be stored separately but visible on the same screen on internal dashboard.
+- There must be a visible indicator on screen whenever staff are viewing 
+  Party B data confirming that Party B cannot see Party A's private 
+  documents and vice versa
+-Each case should have one case reference number and each client should have this as their individual case reference with -A added at the end for Client A and -B at the end for Client B.  Case references should be in the following format PP-2602-113 and the individual client refs would therefore be PP-2602-113-A and PP-2602-113-B

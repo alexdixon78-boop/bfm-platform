@@ -1,0 +1,350 @@
+import { FINANCIAL_DISCLOSURE_BOOKLET_SCHEMA } from "./financial-disclosure-booklet-schema";
+import { financialDisclosureBookletSourceDefinitions } from "./financial-disclosure-booklet-auto-map";
+
+export type CourtFormMergeSourceOption = {
+  value: string;
+  label: string;
+  description?: string;
+  sensitive?: boolean;
+};
+
+export type CourtFormMergeSourceGroup = {
+  groupLabel: string;
+  options: CourtFormMergeSourceOption[];
+};
+
+export const DRAFT_FINANCIAL_SCHEDULE_PDF_ROW_LIMIT = 20;
+
+const draftFinancialScheduleScalarSources: CourtFormMergeSourceOption[] = [
+  { value: "draftFinancialSchedule.header.ref", label: "Ref" },
+  { value: "draftFinancialSchedule.header.clientNames", label: "Client names" },
+  { value: "draftFinancialSchedule.header.clientAName", label: "Client A name" },
+  { value: "draftFinancialSchedule.header.clientBName", label: "Client B name" },
+  { value: "draftFinancialSchedule.header.date", label: "Date" },
+  { value: "draftFinancialSchedule.privilegeNotice", label: "Privilege notice" },
+  { value: "draftFinancialSchedule.finalNotice", label: "Final notice" },
+  { value: "draftFinancialSchedule.realisableAssets.property.value.clientA", label: "Property value - Client A" },
+  { value: "draftFinancialSchedule.realisableAssets.property.value.clientB", label: "Property value - Client B" },
+  { value: "draftFinancialSchedule.realisableAssets.property.value.notes", label: "Property value - Notes" },
+  { value: "draftFinancialSchedule.realisableAssets.property.lessMortgage.clientA", label: "Less mortgage - Client A" },
+  { value: "draftFinancialSchedule.realisableAssets.property.lessMortgage.clientB", label: "Less mortgage - Client B" },
+  { value: "draftFinancialSchedule.realisableAssets.property.lessMortgage.notes", label: "Less mortgage - Notes" },
+  { value: "draftFinancialSchedule.realisableAssets.property.lessPenalties.clientA", label: "Less penalties - Client A" },
+  { value: "draftFinancialSchedule.realisableAssets.property.lessPenalties.clientB", label: "Less penalties - Client B" },
+  { value: "draftFinancialSchedule.realisableAssets.property.lessPenalties.notes", label: "Less penalties - Notes" },
+  { value: "draftFinancialSchedule.realisableAssets.property.sellingFeesEstimate.clientA", label: "Selling fees estimate - Client A" },
+  { value: "draftFinancialSchedule.realisableAssets.property.sellingFeesEstimate.clientB", label: "Selling fees estimate - Client B" },
+  { value: "draftFinancialSchedule.realisableAssets.property.sellingFeesEstimate.notes", label: "Selling fees estimate - Notes" },
+  { value: "draftFinancialSchedule.realisableAssets.property.solicitorFeesEstimate.clientA", label: "Solicitor fees estimate - Client A" },
+  { value: "draftFinancialSchedule.realisableAssets.property.solicitorFeesEstimate.clientB", label: "Solicitor fees estimate - Client B" },
+  { value: "draftFinancialSchedule.realisableAssets.property.solicitorFeesEstimate.notes", label: "Solicitor fees estimate - Notes" },
+  { value: "draftFinancialSchedule.realisableAssets.property.equity.clientA", label: "Equity - Client A" },
+  { value: "draftFinancialSchedule.realisableAssets.property.equity.clientB", label: "Equity - Client B" },
+  { value: "draftFinancialSchedule.realisableAssets.property.equity.notes", label: "Equity - Notes" },
+  { value: "draftFinancialSchedule.unrealisableAssets.pensions.joint", label: "Pensions - Joint" },
+  { value: "draftFinancialSchedule.unrealisableAssets.pensions.clientA.weeklyEstimate", label: "Pensions Client A - weekly estimate" },
+  { value: "draftFinancialSchedule.unrealisableAssets.pensions.clientA.monthly", label: "Pensions Client A - monthly" },
+  { value: "draftFinancialSchedule.unrealisableAssets.pensions.clientA.annual", label: "Pensions Client A - annual" },
+  { value: "draftFinancialSchedule.unrealisableAssets.pensions.clientA.startDate", label: "Pensions Client A - start date" },
+  { value: "draftFinancialSchedule.unrealisableAssets.pensions.clientA.pensionPerWeek", label: "Pensions Client A - pension per week" },
+  { value: "draftFinancialSchedule.unrealisableAssets.pensions.clientB.weeklyEstimate", label: "Pensions Client B - weekly estimate" },
+  { value: "draftFinancialSchedule.unrealisableAssets.pensions.clientB.monthly", label: "Pensions Client B - monthly" },
+  { value: "draftFinancialSchedule.unrealisableAssets.pensions.clientB.annual", label: "Pensions Client B - annual" },
+  { value: "draftFinancialSchedule.unrealisableAssets.pensions.clientB.startDate", label: "Pensions Client B - start date" },
+  { value: "draftFinancialSchedule.unrealisableAssets.pensions.clientB.pensionPerWeek", label: "Pensions Client B - pension per week" },
+  { value: "draftFinancialSchedule.unrealisableAssets.pensions.notes", label: "Pensions - Notes" },
+  { value: "draftFinancialSchedule.monthlyIncome.salaryGross.clientA", label: "Salary gross - Client A" },
+  { value: "draftFinancialSchedule.monthlyIncome.salaryGross.clientB", label: "Salary gross - Client B" },
+  { value: "draftFinancialSchedule.monthlyIncome.salaryGross.notes", label: "Salary gross - Notes" },
+  { value: "draftFinancialSchedule.monthlyIncome.salaryNet.clientA", label: "Salary net - Client A" },
+  { value: "draftFinancialSchedule.monthlyIncome.salaryNet.clientB", label: "Salary net - Client B" },
+  { value: "draftFinancialSchedule.monthlyIncome.salaryNet.notes", label: "Salary net - Notes" },
+  { value: "draftFinancialSchedule.monthlyIncome.totalGrossPerAnnum.clientA", label: "Total gross p/a - Client A" },
+  { value: "draftFinancialSchedule.monthlyIncome.totalGrossPerAnnum.clientB", label: "Total gross p/a - Client B" },
+  { value: "draftFinancialSchedule.monthlyIncome.totalGrossPerAnnum.notes", label: "Total gross p/a - Notes" },
+  { value: "draftFinancialSchedule.monthlyIncome.totalNetPerAnnum.clientA", label: "Total net p/a - Client A" },
+  { value: "draftFinancialSchedule.monthlyIncome.totalNetPerAnnum.clientB", label: "Total net p/a - Client B" },
+  { value: "draftFinancialSchedule.monthlyIncome.totalNetPerAnnum.notes", label: "Total net p/a - Notes" },
+  { value: "draftFinancialSchedule.monthlyIncome.selfAssessmentTaxReturn.clientA", label: "Self Assessment Tax Return - Client A" },
+  { value: "draftFinancialSchedule.monthlyIncome.selfAssessmentTaxReturn.clientB", label: "Self Assessment Tax Return - Client B" },
+  { value: "draftFinancialSchedule.monthlyIncome.selfAssessmentTaxReturn.notes", label: "Self Assessment Tax Return - Notes" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.accommodation.clientA", label: "Accommodation - Client A" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.accommodation.clientB", label: "Accommodation - Client B" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.accommodation.notes", label: "Accommodation - Notes" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.financialCommitments.clientA", label: "Financial commitments - Client A" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.financialCommitments.clientB", label: "Financial commitments - Client B" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.financialCommitments.notes", label: "Financial commitments - Notes" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.utilities.clientA", label: "Utilities - Client A" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.utilities.clientB", label: "Utilities - Client B" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.utilities.notes", label: "Utilities - Notes" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.transport.clientA", label: "Transport - Client A" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.transport.clientB", label: "Transport - Client B" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.transport.notes", label: "Transport - Notes" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.householdExpenses.clientA", label: "Household expenses - Client A" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.householdExpenses.clientB", label: "Household expenses - Client B" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.householdExpenses.notes", label: "Household expenses - Notes" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.personalExpenses.clientA", label: "Personal expenses - Client A" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.personalExpenses.clientB", label: "Personal expenses - Client B" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.personalExpenses.notes", label: "Personal expenses - Notes" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.recreationalExpenses.clientA", label: "Recreational expenses - Client A" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.recreationalExpenses.clientB", label: "Recreational expenses - Client B" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.recreationalExpenses.notes", label: "Recreational expenses - Notes" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.childrensExpenses.clientA", label: "Children's expenses - Client A" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.childrensExpenses.clientB", label: "Children's expenses - Client B" },
+  { value: "draftFinancialSchedule.monthlyExpenditure.childrensExpenses.notes", label: "Children's expenses - Notes" },
+];
+
+const draftFinancialScheduleRepeatableCategories = [
+  { path: "draftFinancialSchedule.realisableAssets.currentAccounts", label: "Current accounts", fields: ["description", "clientA", "clientB", "notes"] },
+  { path: "draftFinancialSchedule.realisableAssets.savingsAccounts", label: "Savings accounts", fields: ["description", "clientA", "clientB", "notes"] },
+  { path: "draftFinancialSchedule.realisableAssets.insurancePoliciesOtherInvestments", label: "Insurance policies / other investments", fields: ["description", "clientA", "clientB", "notes"] },
+  { path: "draftFinancialSchedule.realisableAssets.vehicles", label: "Vehicles", fields: ["description", "clientA", "clientB", "notes"] },
+  { path: "draftFinancialSchedule.realisableAssets.personalBelongings", label: "Personal belongings", fields: ["description", "clientA", "clientB", "notes"] },
+  { path: "draftFinancialSchedule.liabilities.creditCards", label: "Credit cards", fields: ["description", "joint", "clientA", "clientB", "notes"] },
+  { path: "draftFinancialSchedule.liabilities.loans", label: "Loans", fields: ["description", "joint", "clientA", "clientB", "notes"] },
+  { path: "draftFinancialSchedule.liabilities.debtManagement", label: "Debt management", fields: ["description", "joint", "clientA", "clientB", "notes"] },
+] as const;
+
+const draftFinancialScheduleRepeatableSources: CourtFormMergeSourceOption[] = draftFinancialScheduleRepeatableCategories.flatMap((category) =>
+  Array.from({ length: DRAFT_FINANCIAL_SCHEDULE_PDF_ROW_LIMIT }, (_, index) => {
+    const rowNumber = index + 1;
+    return category.fields.map((field) => ({
+      value: `${category.path}.${rowNumber}.${field}`,
+      label: `${category.label} ${rowNumber} - ${field === "clientA" ? "Client A" : field === "clientB" ? "Client B" : field}`,
+    }));
+  }).flat()
+);
+
+const financialDisclosureBookletBaseSources: CourtFormMergeSourceOption[] = [
+  { value: "financialDisclosureBooklet.partyName", label: "Party name" },
+  { value: "financialDisclosureBooklet.schemaVersion", label: "Schema version" },
+];
+
+const financialDisclosureBookletSources: CourtFormMergeSourceOption[] = [
+  ...financialDisclosureBookletBaseSources,
+  ...financialDisclosureBookletSourceDefinitions()
+    .filter((definition) => !financialDisclosureBookletBaseSources.some((source) => source.value === definition.source))
+    .map((definition) => ({
+  value: definition.source,
+  label: definition.aliases[0]
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase()),
+  description: `Financial Disclosure booklet source from ${FINANCIAL_DISCLOSURE_BOOKLET_SCHEMA.length} schema sections`,
+  })),
+];
+
+export const COURT_FORM_MERGE_SOURCE_GROUPS: CourtFormMergeSourceGroup[] = [
+  {
+    groupLabel: "Case details",
+    options: [
+      { value: "case.caseRef", label: "Case reference" },
+      { value: "case.stage", label: "Case stage" },
+      { value: "case.issueType", label: "Issue type" },
+      { value: "case.courtName", label: "Court name" },
+      { value: "case.courtReference", label: "Court reference" },
+      { value: "case.inCourtStatus", label: "Court proceedings status" },
+    ],
+  },
+  {
+    groupLabel: "Client / party details",
+    options: [
+      { value: "client.firstName", label: "Client first name" },
+      { value: "client.lastName", label: "Client last name" },
+      { value: "client.fullName", label: "Client full name" },
+      { value: "client.dateOfBirth", label: "Client date of birth" },
+      { value: "client.email", label: "Client email" },
+      { value: "client.phone", label: "Client phone" },
+      { value: "client.address", label: "Client address" },
+      { value: "party.role", label: "Party role" },
+    ],
+  },
+  {
+    groupLabel: "Demographic form",
+    options: [
+      { value: "demographic.dateOfBirth", label: "Date of Birth" },
+      { value: "demographic.genderIdentity", label: "Gender Identity" },
+      { value: "demographic.genderSelfDescription", label: "Please describe your gender identity" },
+      { value: "demographic.ethnicity", label: "Ethnicity" },
+      { value: "demographic.ethnicSelfDisclose", label: "Please describe your ethnicity" },
+      { value: "demographic.countryOfBirth", label: "Country of Birth" },
+      { value: "demographic.countryOfBirthOther", label: "Specify country" },
+      { value: "demographic.firstLanguage", label: "First Language" },
+      { value: "demographic.firstLanguageOther", label: "Specify language" },
+      { value: "demographic.interpreterNeeded", label: "Interpreter or language support needed?" },
+      { value: "demographic.interpreterLanguage", label: "Interpreter language" },
+      { value: "demographic.disabilityOrHealthConditions", label: "Disability / health condition(s)" },
+      { value: "demographic.additionalNeeds", label: "Additional needs / reasonable adjustments" },
+      { value: "demographic.employmentStatus", label: "Employment Status" },
+      { value: "demographic.legalAidEligible", label: "Legal aid eligible?" },
+      { value: "demographic.voucherSchemeEligible", label: "Voucher scheme eligible?" },
+      { value: "demographic.familyCaseSubtype", label: "Family Case Subtype" },
+      { value: "demographic.workplaceCaseSubtype", label: "Workplace Case Subtype" },
+      { value: "demographic.courtProceedingsStatus", label: "Currently in court proceedings?" },
+      { value: "demographic.courtReference", label: "Court Reference Number" },
+      { value: "demographic.courtName", label: "Court Name and Location" },
+      { value: "demographic.cafcassInvolved", label: "CAFCASS involvement?" },
+      { value: "demographic.solicitorInvolved", label: "Solicitor acting for client?" },
+      { value: "demographic.solicitorName", label: "Solicitor Name / Firm" },
+      { value: "demographic.childrenAges", label: "Ages of Children (if applicable)" },
+      { value: "demographic.lifeSatisfaction", label: "Life Satisfaction" },
+      { value: "demographic.anxietyScore", label: "Anxiety" },
+      { value: "demographic.emotionalWellbeing", label: "Emotional Wellbeing" },
+    ],
+  },
+  {
+    groupLabel: "MIAM record",
+    options: [
+      { value: "miam.sessionMediator", label: "Mediator" },
+      { value: "miam.sessionDate", label: "Date" },
+      { value: "miam.sessionTime", label: "Time" },
+      { value: "miam.otherPeoplePresent", label: "Other people present?" },
+      { value: "miam.caseReference", label: "Case reference" },
+      { value: "miam.caseType", label: "Type of case" },
+      { value: "miam.clientName", label: "Client name" },
+      { value: "miam.clientFirstName", label: "First Name" },
+      { value: "miam.clientLastName", label: "Last Name" },
+      { value: "miam.clientDob", label: "DOB" },
+      { value: "miam.clientAddress", label: "Address" },
+      { value: "miam.clientPhone", label: "Confirm Telephone" },
+      { value: "miam.howHeardAboutBfm", label: "How did you hear about BFM?" },
+      { value: "miam.clientOccupation", label: "Occupation" },
+      { value: "miam.clientDisability", label: "Do you consider yourself to have a disability or any accessibility needs you'd like to make us aware of?" },
+      { value: "miam.clientAccessibility", label: "How can we make the process most accessible for you?" },
+      { value: "miam.clientEthnicity", label: "Ethnicity (for monitoring purposes only)" },
+      { value: "miam.clientReligiousCulturalNeeds", label: "Religious/cultural/language needs/considerations? (please specify)" },
+      { value: "miam.clientNewPartner", label: "New partner (do you live together?)" },
+      { value: "miam.introPurposeDiscussed", label: "Purpose of meeting discussed?" },
+      { value: "miam.introConfidentialityExplained", label: "Confidentiality & exceptions explained?" },
+      { value: "miam.introNotes", label: "Tell me a little bit about what brings you here today? Just a brief outline as I will be asking for more details as we go through" },
+      { value: "miam.children", label: "Children" },
+      { value: "miam.otherClientName", label: "Other client name" },
+      { value: "miam.otherClientFirstName", label: "Other client first name" },
+      { value: "miam.otherClientLastName", label: "Other client last name" },
+      { value: "miam.otherClientDob", label: "Other client date of birth" },
+      { value: "miam.otherClientAddress", label: "Other client address" },
+      { value: "miam.otherClientPhone", label: "Other client telephone number" },
+      { value: "miam.otherClientEmail", label: "Other client email" },
+      { value: "miam.married", label: "Married Y/N" },
+      { value: "miam.dateOfMarriage", label: "Date of marriage" },
+      { value: "miam.livedTogether", label: "Lived together Y/N" },
+      { value: "miam.dateOfCohabitation", label: "Date of cohabitation" },
+      { value: "miam.dateOfSeparation", label: "Date of separation" },
+      { value: "miam.bothParentsPr", label: "Both parents have PR?" },
+      { value: "miam.prIsIssue", label: "Is PR an issue?" },
+      { value: "miam.divorceStarted", label: "Divorce started? Y/N" },
+      { value: "miam.divorceStartedDate", label: "Divorce started date" },
+      { value: "miam.petitioner", label: "Petitioner?" },
+      { value: "miam.decreeNisiDate", label: "Decree Nisi/Conditional order (date)" },
+      { value: "miam.decreeAbsoluteDate", label: "Decree Absolute/Final order (date)" },
+      { value: "miam.courtOrders", label: "Court orders" },
+      { value: "miam.applicationsToCourtText", label: "Applications to court?" },
+      { value: "miam.bgWhatBringsYou", label: "What brings you here today?" },
+      { value: "miam.bgLivingArrangements", label: "Where does each client / the child/ren live? With whom?" },
+      { value: "miam.bgChildrenDetails", label: "The children? Biological and any other relevant children" },
+      { value: "miam.bgContactArrangements", label: "Current contact arrangements?" },
+      { value: "miam.backgroundNotes", label: "Additional background notes" },
+      { value: "miam.welfareOfChildren", label: "Any welfare concerns regarding children?", sensitive: true },
+      { value: "miam.welfareChildrensServices", label: "Have children's services been involved?", sensitive: true },
+      { value: "miam.welfareSafetyConcerns", label: "Are there any safety concerns for any child?", sensitive: true },
+      { value: "miam.welfareWitnessedConflict", label: "Has any child witnessed conflict or domestic abuse?", sensitive: true },
+      { value: "miam.welfareInjuriesBehaviouralChanges", label: "Has any child sustained injuries or shown behavioural changes?", sensitive: true },
+      { value: "miam.welfareSafeguardingPlans", label: "Any safeguarding plans in place?", sensitive: true },
+      { value: "miam.welfareAgencyContacted", label: "Agency contacted?", sensitive: true },
+      { value: "miam.welfareAgencyName", label: "Agency Name", sensitive: true },
+      { value: "miam.welfareAgencyDate", label: "Agency Contact Date", sensitive: true },
+      { value: "miam.welfareAgencyTime", label: "Agency Contact Time", sensitive: true },
+      { value: "miam.welfareNotes", label: "Welfare Notes", sensitive: true },
+      { value: "miam.childInclusiveExplained", label: "Have you explained this option to the client?" },
+      { value: "miam.childInclusiveClientResponse", label: "Client's response" },
+      { value: "miam.childInclusiveConfidentialityExplained", label: "Explained to client: Discussions with children are confidential unless safeguarding concerns arise. The child decides what, if anything, is shared with parents." },
+      { value: "miam.childInclusiveConsentAgreed", label: "Consent agreed by client?" },
+      { value: "miam.childInclusiveNotes", label: "Child inclusive mediation notes" },
+      { value: "miam.daHurtOrScared", label: "Have you ever been hurt by or felt scared of your partner/ex-partner or a family member?", sensitive: true },
+      { value: "miam.daPoliceInvolved", label: "Have the police ever been involved in any incident between you?", sensitive: true },
+      { value: "miam.daPhysical", label: "Have you ever been hit, slapped, kicked or otherwise physically hurt?", sensitive: true },
+      { value: "miam.daPowerControl", label: "Has your partner/ex-partner ever tried to control you?", sensitive: true },
+      { value: "miam.daFeelSafe", label: "Do you feel safe to mediate with the other person?", sensitive: true },
+      { value: "miam.daFinancialControl", label: "Has your partner/ex-partner ever controlled your finances or prevented you from working?", sensitive: true },
+      { value: "miam.daPermissionToDecide", label: "Do you feel you need your partner's/ex-partner's permission to make decisions?", sensitive: true },
+      { value: "miam.daAfraidOfReaction", label: "Are you afraid of how your partner/ex-partner will react?", sensitive: true },
+      { value: "miam.domesticAbuseScreening", label: "Additional screening notes", sensitive: true },
+      { value: "miam.domesticAbuseSafetyConclusions", label: "Set out any conclusions affecting mediation reached by you and client, including safety measures (e.g. shuttle)", sensitive: true },
+      { value: "miam.domesticAbuseSupportServices", label: "Support services information provided", sensitive: true },
+      { value: "miam.domesticAbuseSupportServicesOther", label: "Other support service", sensitive: true },
+      { value: "miam.domesticAbuseLegalAidInfo", label: "If domestic abuse disclosed, explained legal aid may be available if evidence meets prescribed requirements - direct to MIAM exemptions", sensitive: true },
+      { value: "miam.domesticAbuseNotes", label: "Domestic abuse additional notes", sensitive: true },
+      { value: "miam.erEqualBasis", label: "Do you feel you can engage on an equal basis with the other person?", sensitive: true },
+      { value: "miam.erChoosingFreely", label: "Are you choosing freely to attend mediation?", sensitive: true },
+      { value: "miam.erPressuredToAttend", label: "Do you feel pressured to attend by anyone?", sensitive: true },
+      { value: "miam.erCanWithdraw", label: "Do you understand you can withdraw from mediation at any time?", sensitive: true },
+      { value: "miam.erSameRoom", label: "Would you feel comfortable being in the same (virtual) room as the other person?", sensitive: true },
+      { value: "miam.erCapacity", label: "Do you have the capacity to engage in mediation? (mental health, substance use, etc.)", sensitive: true },
+      { value: "miam.emotionalReadiness", label: "Additional emotional readiness notes", sensitive: true },
+      { value: "miam.safetyMeasuresDiscussed", label: "Safety measures discussed:", sensitive: true },
+      { value: "miam.safetyMeasuresAgreed", label: "Safety measures agreed:", sensitive: true },
+      { value: "miam.issuesForMediation", label: "Issues for mediation" },
+      { value: "miam.issuesOther", label: "Other issues" },
+      { value: "miam.furtherInfoRequested", label: "Further information requested" },
+      { value: "miam.furtherInfoOther", label: "Other further information" },
+      { value: "miam.suitableForMediation", label: "Suitable for mediation? Yes/No and reasons (not to be communicated with clients)", sensitive: true },
+      { value: "miam.suitabilityReasons", label: "Suitability reasons", sensitive: true },
+      { value: "miam.nextSteps", label: "Next steps?" },
+      { value: "miam.mediationType", label: "Type of mediation?" },
+      { value: "miam.timeline", label: "Timeline" },
+      { value: "miam.agreedWithClient", label: "Agreed with client?" },
+      { value: "miam.ofsRequired", label: "OFS required? (inform of fees and payment upfront)" },
+      { value: "miam.mouRequired", label: "MOU required? (inform of fees)" },
+      { value: "miam.statementOfChildArrangements", label: "Statement of child arrangements required? (inform of fees)" },
+      { value: "miam.ppcRequired", label: "Professional Practice Consultancy discussion required? Y/N", sensitive: true },
+      { value: "miam.ppcReason", label: "Reason for PPC", sensitive: true },
+      { value: "miam.ppcReasonOther", label: "Other PPC reason", sensitive: true },
+      { value: "miam.ppcDate", label: "PPC discussion date", sensitive: true },
+      { value: "miam.ppcConsultantName", label: "PPC consultant name", sensitive: true },
+      { value: "miam.ppcOutcomes", label: "Key outcomes / guidance", sensitive: true },
+      { value: "miam.referralToCafcass", label: "Referral to CAFCASS/Other", sensitive: true },
+      { value: "miam.referralToChildrenServices", label: "Referral to children's services (give details)", sensitive: true },
+      { value: "miam.referralToChildrenServicesDetails", label: "Referral to children's services details", sensitive: true },
+      { value: "miam.referralFollowUpContact", label: "Follow up contact with children's services required?", sensitive: true },
+      { value: "miam.feePerSession", label: "Fee per session" },
+      { value: "miam.totalEstimatedFee", label: "Total estimated fee" },
+      { value: "miam.mojVoucherApplied", label: "MOJ voucher applied" },
+      { value: "miam.legalAidApplied", label: "Legal aid applied" },
+      { value: "miam.paymentMethod", label: "Payment method" },
+      { value: "miam.followUpContactRequired", label: "Follow up contact required" },
+    ],
+  },
+  {
+    groupLabel: "Draft Financial Schedule",
+    options: [
+      ...draftFinancialScheduleScalarSources,
+      ...draftFinancialScheduleRepeatableSources,
+    ],
+  },
+  {
+    groupLabel: "Financial Disclosure Booklet",
+    options: financialDisclosureBookletSources,
+  },
+  {
+    groupLabel: "Draft-only fields",
+    options: [
+      { value: "draft.notes", label: "Optional draft notes" },
+      { value: "draft.*", label: "Custom draft answer", description: "Use draft.<name> for fields completed during court-form drafting." },
+    ],
+  },
+  {
+    groupLabel: "Static value",
+    options: [
+      { value: "static", label: "Static value" },
+    ],
+  },
+];
+
+export const COURT_FORM_MERGE_SOURCE_VALUES = COURT_FORM_MERGE_SOURCE_GROUPS
+  .flatMap((group) => group.options.map((option) => option.value));
+
+export function getCourtFormMergeSourceLabel(source: string): string {
+  if (source.startsWith("draft.") && source !== "draft.*") return `Draft answer: ${source.replace(/^draft\./, "")}`;
+  return COURT_FORM_MERGE_SOURCE_GROUPS
+    .flatMap((group) => group.options)
+    .find((option) => option.value === source)?.label || source;
+}

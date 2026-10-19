@@ -1,0 +1,1606 @@
+Fields grouped into nine sections (A-I). Mandatory column key: Y = mandatory, Rec = recommended, N = optional, Auto = system-generated. 
+
+ 
+
+Field label 
+
+Field ID 
+
+Tab on portal 
+
+Type 
+
+Options / developer notes 
+
+Mand. 
+
+Stage 
+
+Visible to 
+
+Section A — Personal identity 
+
+First name 
+
+med_first_name 
+
+Profile 
+
+Text 
+
+Free text. Max 100 chars. 
+
+Y 
+
+Recruitment 
+
+Superadmin, Subadmin, Mediator (own) 
+
+Middle name(s) 
+
+med_middle_name 
+
+Profile 
+
+Text 
+
+Optional. 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Last name 
+
+med_last_name 
+
+Profile 
+
+Text 
+
+Free text. Max 100 chars. 
+
+Y 
+
+Recruitment 
+
+Superadmin, Subadmin, Mediator 
+
+Preferred display name 
+
+med_display_name 
+
+Profile / Bio 
+
+Text 
+
+Name shown to clients in case comms and bio. Defaults to first + last; mediator can override (e.g. Dr / preferred form). 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator, Client (via bio) 
+
+Date of birth 
+
+med_dob 
+
+Profile 
+
+Date 
+
+DD/MM/YYYY. Auto-calc age. Used for DBS and ICO verification only — NEVER client-facing. 
+
+Y 
+
+Onboarding 
+
+Superadmin only 
+
+Profile photo 
+
+med_photo 
+
+Profile / Bio 
+
+Image 
+
+Square crop preferred. Used in client-facing bio (Section E). Subadmin must approve before going live. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator, Client (via bio) 
+
+Email (primary) 
+
+med_email 
+
+Profile 
+
+Email 
+
+Validate format. Primary login + comms. 
+
+Y 
+
+Recruitment 
+
+Superadmin, Subadmin, Mediator 
+
+Mobile telephone 
+
+med_mobile 
+
+Profile 
+
+Tel 
+
+UK format. Accept international. 
+
+Y 
+
+Recruitment 
+
+Superadmin, Subadmin 
+
+Additional telephone 
+
+med_phone_2 
+
+Profile 
+
+Tel 
+
+Optional secondary number. 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Address line 1, line 2, town, postcode, country 
+
+med_address_* 
+
+Profile 
+
+Text 
+
+Required for ICO registration and contract correspondence. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Next of kin / emergency contact 
+
+med_nok_* 
+
+Profile 
+
+Text 
+
+Name + phone. Used only in genuine emergency. 
+
+Rec 
+
+Onboarding 
+
+Superadmin only 
+
+Section B — Equality, diversity and inclusion (EDI reporting only) 
+
+Sex 
+
+med_sex 
+
+Profile (private) 
+
+Dropdown 
+
+Female | Male | Prefer not to say. 
+
+Rec 
+
+Onboarding 
+
+Superadmin only 
+
+Gender identity 
+
+med_gender_identity 
+
+Profile (private) 
+
+Dropdown 
+
+Woman | Man | Non-binary | Self-describe (free text below) | Prefer not to say. 
+
+Rec 
+
+Onboarding 
+
+Superadmin only 
+
+Gender — self-description 
+
+med_gender_self 
+
+Profile (private) 
+
+Text 
+
+Display only when "Self-describe" selected. Max 200 chars. 
+
+N 
+
+Onboarding 
+
+Superadmin only 
+
+Ethnicity 
+
+med_ethnicity 
+
+Profile (private) 
+
+Dropdown 
+
+Full ONS 2021 Census categories (W1-O9 + NS Prefer not to say). Same dropdown as client doc Appendix A. 
+
+Rec 
+
+Onboarding 
+
+Superadmin only 
+
+Disability or health condition 
+
+med_disability 
+
+Profile (private) 
+
+Multi-select 
+
+None | Blindness or partial sight | Deafness or partial hearing | Mental health condition | Learning disability or difficulty | Memory or cognitive difficulties | Autistic spectrum condition | Neurodivergent (ADHD, dyslexia, dyspraxia, other) | Long-term physical condition | Other (specify) | Prefer not to say. 
+
+Rec 
+
+Onboarding 
+
+Superadmin only 
+
+First language 
+
+med_first_language 
+
+Profile (private) 
+
+Dropdown 
+
+English | Welsh | Polish | Urdu | Punjabi | Bengali | Gujarati | Arabic | Somali | Romanian | Other (specify) | Prefer not to say. 
+
+Rec 
+
+Onboarding 
+
+Superadmin only 
+
+Country of birth 
+
+med_country_of_birth 
+
+Profile (private) 
+
+Dropdown 
+
+Same options as client doc. ONS 2021 Census aligned. 
+
+Rec 
+
+Onboarding 
+
+Superadmin only 
+
+Religion or belief 
+
+med_religion 
+
+Profile (private) 
+
+Dropdown 
+
+Optional. ONS 2021 Census categories. 
+
+N 
+
+Onboarding 
+
+Superadmin only 
+
+Sexual orientation 
+
+med_sexuality 
+
+Profile (private) 
+
+Dropdown 
+
+Optional. ONS 2021 Census categories. 
+
+N 
+
+Onboarding 
+
+Superadmin only 
+
+Section C — Professional credentials 
+
+FMC URN 
+
+med_fmc_urn 
+
+Credentials 
+
+Text 
+
+Family Mediation Council Unique Registration Number. Required if claiming FMC registration. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+FMC accreditation status 
+
+med_fmc_accreditation 
+
+Credentials 
+
+Dropdown 
+
+Fully Accredited | Working towards (WTA) | Not applicable. Drives case allocation per Reference Guide. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator, Client (status only via bio if accredited) 
+
+FMC accreditation date 
+
+med_fmc_accred_date 
+
+Credentials 
+
+Date 
+
+Date of full accreditation. Used to calculate years of experience for bio. 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+CMC registration number 
+
+med_cmc_reg 
+
+Credentials 
+
+Text 
+
+Civil Mediation Council registration number. Required for civil and commercial mediation. 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Other regulatory body 
+
+med_other_regulator 
+
+Credentials 
+
+Text 
+
+Free text. E.g. ProMediate, CEDR registration, Law Society, etc. Plus reg number. 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Initial mediation training 
+
+med_training_initial 
+
+Credentials 
+
+Composite 
+
+Provider | Date | Certification name. Free text fields. Upload certificate. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Workplace mediation training 
+
+med_training_workplace 
+
+Credentials 
+
+Composite 
+
+Provider | Date | Certification. Required for workplace cases. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Civil mediation training 
+
+med_training_civil 
+
+Credentials 
+
+Composite 
+
+Provider | Date | Certification. 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Commercial mediation training 
+
+med_training_commercial 
+
+Credentials 
+
+Composite 
+
+Provider | Date | Certification. 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Higher qualifications 
+
+med_qualifications 
+
+Credentials 
+
+Text area 
+
+Free text. Degrees, professional qualifications relevant to mediation. 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+CPD log 
+
+med_cpd_log 
+
+Credentials 
+
+Composite multi-row 
+
+Date | Activity | Hours | Evidence upload. Auto-sum rolling 12-month CPD hours. 
+
+Y 
+
+Ongoing 
+
+Superadmin, Subadmin, Mediator 
+
+CPD hours rolling 12 months 
+
+med_cpd_total 
+
+Credentials 
+
+Number (auto) 
+
+Auto-calculated. Alert if below FMC minimum (currently 6 hrs/yr post-accreditation, check for current rule). 
+
+Auto 
+
+Ongoing 
+
+Superadmin, Subadmin, Mediator 
+
+PI insurance provider 
+
+med_pi_provider 
+
+Credentials 
+
+Text 
+
+Insurer name. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+PI insurance policy number 
+
+med_pi_policy 
+
+Credentials 
+
+Text 
+
+Policy reference. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+PI insurance cover amount 
+
+med_pi_cover 
+
+Credentials 
+
+Currency 
+
+Cover in £. FMC minimum currently £1m (verify current rule). 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+PI insurance expiry 
+
+med_pi_expiry 
+
+Credentials 
+
+Date 
+
+Auto-alert Subadmin 30 days before expiry. Mediator status auto-flagged if lapses. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+ICO registration number 
+
+med_ico_reg 
+
+Credentials 
+
+Text 
+
+ICO registration is mandatory for any sole practitioner handling personal data. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+ICO expiry date 
+
+med_ico_expiry 
+
+Credentials 
+
+Date 
+
+Auto-alert 30 days before expiry. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+DBS check level 
+
+med_dbs_level 
+
+Credentials 
+
+Dropdown 
+
+Basic | Standard | Enhanced | Enhanced with barred lists. Family work requires Enhanced minimum. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+DBS certificate number 
+
+med_dbs_cert 
+
+Credentials 
+
+Text 
+
+Cert number. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+DBS issue date 
+
+med_dbs_date 
+
+Credentials 
+
+Date 
+
+Refresh every 3 years. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Reference 1 
+
+med_ref_1 
+
+Credentials 
+
+Composite 
+
+Name | Role | Email | Phone | Date checked | Status (pending / verified / failed). 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Reference 2 
+
+med_ref_2 
+
+Credentials 
+
+Composite 
+
+As above. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+PPC supervisor 
+
+med_ppc_supervisor 
+
+Credentials 
+
+Composite 
+
+Name | Email | Phone | Last sign-off date | Next review due. Required for FMC accreditation pathway. 
+
+Y for WTA 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Practises at (other firms / practices) 
+
+med_external_practices 
+
+Profile / Bio 
+
+Text 
+
+Free text. E.g. "Tandem Mediation", "Best Practice Family Mediation". Per Reference Guide. Optionally shown on bio with mediator consent. 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator, optionally Client (via bio) 
+
+Section D — Service offering and case allocation 
+
+Mediation types willing to take 
+
+med_types 
+
+Service offering 
+
+Multi-select 
+
+Family | Workplace | Civil | Commercial | Other (specify). Drives which cases admin can route to this mediator. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator, Client (via bio) 
+
+Family sub-types 
+
+med_family_subtypes 
+
+Service offering 
+
+Multi-select 
+
+Child arrangements | Property and finances (P&F) | Both child and P&F | AIM (All Issues Mediation) | Grandparent | Other family. Display only when Family selected. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Workplace sub-types 
+
+med_workplace_subtypes 
+
+Service offering 
+
+Multi-select 
+
+Employee-employee | Manager-employee | Team conflict | Grievance | Harassment or bullying | Redundancy | Disciplinary | Other. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Civil sub-types 
+
+med_civil_subtypes 
+
+Service offering 
+
+Multi-select 
+
+Same options as client doc R33. Display only when Civil selected. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Commercial sub-types 
+
+med_commercial_subtypes 
+
+Service offering 
+
+Multi-select 
+
+Same options as client doc R34. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Other / coaching sub-types 
+
+med_other_subtypes 
+
+Service offering 
+
+Multi-select 
+
+SEND | Education | Restorative | Coaching individual | Coaching couple | Coaching team | Other. 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Specialisms 
+
+med_specialisms 
+
+Service offering / Bio 
+
+Multi-select 
+
+Hybrid mediation | Shuttle mediation | Online-only | Vulnerable parties | LGBTQ+ specialism | Faith-sensitive | Trauma-informed | Children's voice | High-conflict | SEND | Domestic abuse aware | Other (self-add). Multi-select with self-add. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator, Client (via bio) 
+
+Court Form Packages 
+
+med_court_forms 
+
+Service offering 
+
+Multi-select 
+
+Form A | C100 | FM1 (mediator-issued) | None. Mediators issuing court packages must have specific training (per Reference Guide, Manpreet leads internal training on Form A and C100). 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+MoJ voucher scheme participating? 
+
+med_moj_voucher 
+
+Service offering 
+
+Boolean 
+
+Yes / No. Required for MoJ voucher scheme cases (FMC-accredited mediators only). 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Solo or co-mediation status (per case type) 
+
+med_solo_status 
+
+Service offering 
+
+Composite per case type 
+
+For each case type: Solo | Conditional (co-mediation required) | Not available | By request. Maps to the Reference Guide quick reference matrix. Drives admin allocation logic. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Can supervise WTAs? 
+
+med_can_supervise 
+
+Service offering 
+
+Boolean 
+
+Yes / No. Currently only Davina Clements and Kate Miller. Per Reference Guide rule: only specific accredited mediators may supervise. Used by admin to find valid co-mediator pairings. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Co-mediation cap (sessions per week) 
+
+med_comed_cap 
+
+Service offering 
+
+Number 
+
+Default 1 per week per Reference Guide. Adjustable per mediator. Capacity rule. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+High-conflict cases (yes/no) 
+
+med_high_conflict 
+
+Service offering 
+
+Boolean 
+
+Mediator opts in or out. Used in allocation logic. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Safeguarding-flagged cases (yes/no) 
+
+med_safeguarding_cases 
+
+Service offering 
+
+Boolean 
+
+Mediator opts in or out. Used in allocation. Default No until specifically opted in. 
+
+Rec 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Geographic coverage 
+
+med_geo 
+
+Service offering 
+
+Multi-select 
+
+BFM is online-first; this captures any in-person availability or referral routing geography. Multi-select counties / regions / "online only" / "anywhere". 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator, Client (via bio) 
+
+Section E — Bio (client-facing profile, auto-populated from onboarding) 
+
+Long bio 
+
+med_bio_long 
+
+Bio 
+
+Text area 
+
+Free text. Approved by Subadmin (or Rebecca for sensitive cases) before publication. Max 2000 chars. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator, Client 
+
+Short bio (auto-generated) 
+
+med_bio_short 
+
+Bio 
+
+Text (auto) 
+
+Auto-truncated 200 chars from long bio. Displayed on mediator cards / case views. 
+
+Auto 
+
+Onboarding 
+
+All 
+
+Bio mediator type tags (auto) 
+
+med_bio_types 
+
+Bio 
+
+Multi-tag (auto) 
+
+Auto-pulled from med_types and med_fmc_accreditation. E.g. "Family mediator", "Workplace mediator", "Fully Accredited". 
+
+Auto 
+
+Auto 
+
+All 
+
+Bio specialism tags (auto) 
+
+med_bio_specialisms 
+
+Bio 
+
+Multi-tag (auto) 
+
+Auto-pulled from med_specialisms. 
+
+Auto 
+
+Auto 
+
+All 
+
+Bio years of experience (auto) 
+
+med_bio_years_exp 
+
+Bio 
+
+Number (auto) 
+
+Auto-calculated from FMC accreditation date OR initial training date for WTAs. 
+
+Auto 
+
+Auto 
+
+All 
+
+Tickbox — "I speak other languages" 
+
+med_bio_languages_tick 
+
+Bio 
+
+Boolean + multi-select 
+
+When ticked, mediator selects from full language list (multi-select with self-add). Auto-populates Section B first language + adds additional languages. Displayed on bio. 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator, Client 
+
+Tickbox — "I have specific skills relevant to client needs" 
+
+med_bio_skills_tick 
+
+Bio 
+
+Boolean + multi-select 
+
+When ticked, mediator selects from specialisms (Section D) plus self-added free-text skills. Displayed on bio. 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator, Client 
+
+Bio preview / approval workflow 
+
+med_bio_approval_status 
+
+Bio 
+
+Dropdown 
+
+Draft | Pending Subadmin approval | Approved (live) | Rejected (with reason). Mediator can request changes; Subadmin reviews before changes go live. 
+
+Y 
+
+Ongoing 
+
+Superadmin, Subadmin, Mediator 
+
+Section F — Availability and working hours 
+
+Working days 
+
+med_working_days 
+
+Availability 
+
+Multi-select 
+
+Mon-Sun. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Working hours per day 
+
+med_working_hours 
+
+Availability 
+
+Composite per day 
+
+Start time | End time per working day. Excludes lunch. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Hours per week willing to take 
+
+med_hours_per_week 
+
+Availability 
+
+Number 
+
+Capacity cap. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Holiday calendar 
+
+med_holiday 
+
+Availability 
+
+Date ranges 
+
+Mediator-managed. Auto-blocks slots. 
+
+Rec 
+
+Ongoing 
+
+Superadmin, Subadmin, Mediator 
+
+Calendar sync 
+
+med_calendar_sync 
+
+Availability 
+
+OAuth 
+
+Google or Outlook. Already specced as OB-13 in dev task list. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Recurring Zoom link 
+
+med_zoom_link 
+
+Availability 
+
+URL 
+
+Per OB-14 added 28 Apr 2026. Used for joint sessions. Help link to Zoom KB article. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Section G — Engagement type and contracts 
+
+Engagement type 
+
+med_engagement_type 
+
+Contracts 
+
+Dropdown 
+
+Accredited freelance | WTA freelance | WTA + time-banking pilot | Founder (by request) | Off-boarded. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Contract version 
+
+med_contract_version 
+
+Contracts 
+
+Text 
+
+E.g. "Master Mediator v2 2026-04-26". Standing rule: always include staff guide attachment. Per memory: BFM Master Mediator Agreement v2. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Contract signed date 
+
+med_contract_signed 
+
+Contracts 
+
+Date 
+
+ 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Time-banking side agreement? 
+
+med_timebank_agreement 
+
+Contracts 
+
+Boolean + composite 
+
+Yes/No. If Yes: agreement signed date | hours per week | weekly check-in day/time (per memory: Manpreet Friday 10:00 with Margaret) | hours cap (default 10) | pilot start date | review date (one-month default). 
+
+N 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Time-banked hours earned 
+
+med_timebank_earned 
+
+Contracts 
+
+Number (auto) 
+
+Auto-summed from project work log. 
+
+Auto 
+
+Ongoing 
+
+Superadmin, Subadmin, Mediator 
+
+Time-banked hours used 
+
+med_timebank_used 
+
+Contracts 
+
+Number (auto) 
+
+Auto-summed from observations / co-mediation booked using banked hours. 
+
+Auto 
+
+Ongoing 
+
+Superadmin, Subadmin, Mediator 
+
+Time-banked hours balance 
+
+med_timebank_balance 
+
+Contracts 
+
+Number (auto) 
+
+Auto: earned minus used. Cap default 10 per Reference Guide. 
+
+Auto 
+
+Ongoing 
+
+Superadmin, Subadmin, Mediator 
+
+Project work log (time-banking) 
+
+med_timebank_log 
+
+Contracts 
+
+Composite multi-row 
+
+Date | Activity | Hours | Approved by Margaret? Used to evidence banked hours. 
+
+Rec for time-banking 
+
+Ongoing 
+
+Superadmin, Subadmin, Mediator 
+
+Onboarding complete? 
+
+med_onboarding_complete 
+
+Contracts 
+
+Boolean 
+
+Yes/No. Triggered when all OB-1 to OB-13 plus OB-14 steps are complete and Subadmin signs off. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin, Mediator 
+
+Panel status 
+
+med_panel_status 
+
+Contracts 
+
+Dropdown 
+
+Active | Paused (specify reason) | Inactive | Off-boarded. Drives whether mediator appears in case allocation pool. 
+
+Y 
+
+Ongoing 
+
+Superadmin, Subadmin, Mediator 
+
+Off-boarding date and reason 
+
+med_offboard_* 
+
+Contracts 
+
+Composite 
+
+Date | Reason. Triggers exit settlement workflow (London Living Wage x hours within 30 days, per standing rule). 
+
+N 
+
+Off-boarding 
+
+Superadmin, Subadmin 
+
+Section H — Payment details (Superadmin only) 
+
+Sort code 
+
+med_sort_code 
+
+Payment (Superadmin) 
+
+Text 
+
+UK format. 
+
+Y 
+
+Onboarding 
+
+Superadmin only 
+
+Account number 
+
+med_account_number 
+
+Payment (Superadmin) 
+
+Text 
+
+UK format. 
+
+Y 
+
+Onboarding 
+
+Superadmin only 
+
+Account name 
+
+med_account_name 
+
+Payment (Superadmin) 
+
+Text 
+
+ 
+
+Y 
+
+Onboarding 
+
+Superadmin only 
+
+VAT registered? 
+
+med_vat 
+
+Payment (Superadmin) 
+
+Boolean + text 
+
+Yes/No. If Yes, VAT number. 
+
+Y 
+
+Onboarding 
+
+Superadmin only 
+
+Self-billing agreement? 
+
+med_self_billing 
+
+Payment (Superadmin) 
+
+Boolean + date 
+
+Yes/No. If Yes, signed date. 
+
+N 
+
+Onboarding 
+
+Superadmin only 
+
+UTR (Unique Taxpayer Reference) 
+
+med_utr 
+
+Payment (Superadmin) 
+
+Text 
+
+Required for HMRC reporting if self-employed. 
+
+N 
+
+Onboarding 
+
+Superadmin only 
+
+Payment terms (days) 
+
+med_payment_terms 
+
+Payment (Superadmin) 
+
+Number 
+
+Default 30 days. 
+
+Y 
+
+Onboarding 
+
+Superadmin only 
+
+Section I — Safeguarding and ongoing oversight 
+
+Safeguarding training completion 
+
+med_safeguarding_training 
+
+Compliance 
+
+Composite 
+
+Date | Provider | Cert. 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Safeguarding refresher due 
+
+med_safeguarding_refresh 
+
+Compliance 
+
+Date 
+
+Auto-alert 30 days before due. 
+
+Y 
+
+Ongoing 
+
+Superadmin, Subadmin, Mediator 
+
+Confidentiality agreement signed 
+
+med_confidentiality 
+
+Compliance 
+
+Date 
+
+ 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+GDPR / data handling training 
+
+med_gdpr_training 
+
+Compliance 
+
+Date 
+
+ 
+
+Y 
+
+Onboarding 
+
+Superadmin, Subadmin 
+
+Complaints log (linked to cases) 
+
+med_complaints 
+
+Compliance 
+
+Composite multi-row 
+
+Date | Case ref | Complaint summary | Outcome | Sign-off. Linked to case file. 
+
+N 
+
+Ongoing 
+
+Superadmin, Subadmin 
+
+Annual review status 
+
+med_annual_review 
+
+Compliance 
+
+Composite 
+
+Last review date | Next review due | Outcome (Pass / Action items / Fail). Triggers credential refresh workflow. 
+
+Y 
+
+Annually 
+
+Superadmin, Subadmin, Mediator 
+

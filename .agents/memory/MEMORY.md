@@ -1,0 +1,1 @@
+- [Contractor Pipeline architecture](contractor-pipeline.md) — 5-stage kanban mirrors mediator pipeline; unconverted applicants in prospect/screening/contract_sent, contractor users in active/off_boarded.

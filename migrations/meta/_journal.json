@@ -1,0 +1,503 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1787572573444,
+      "tag": "0000_add_miam_other_fields",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1787578942351,
+      "tag": "0001_cynical_jubilee",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1787625600000,
+      "tag": "0002_case_finance_ledger",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1787702400000,
+      "tag": "0003_booking_finance_sync",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1787788800000,
+      "tag": "0004_mediation_session_booking",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1787875200000,
+      "tag": "0005_mediation_session_proposals",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1787961600000,
+      "tag": "0006_mediation_session_participant_invites",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1788048000000,
+      "tag": "0007_mediation_session_party_attendance",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1788134400000,
+      "tag": "0008_appointment_lifecycle_history",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1788220800000,
+      "tag": "0009_case_closure_records",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1788307200000,
+      "tag": "0010_client_friendly_family_subtypes",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1788393600000,
+      "tag": "0011_mediation_session_post_session_ops",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1788480000000,
+      "tag": "0012_financial_disclosure_folders",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1788566400000,
+      "tag": "0013_repair_financial_disclosure_party_scope",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1788652800000,
+      "tag": "0014_court_form_generation",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1788739200000,
+      "tag": "0015_cim_eligibility",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1788825600000,
+      "tag": "0016_miam_validity_renewals",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1788912000000,
+      "tag": "0017_moj_voucher_eligibility",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1788998400000,
+      "tag": "0018_case_communication_ledger",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1789084800000,
+      "tag": "0019_case_communication_actor_history",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1789171200000,
+      "tag": "0020_court_form_field_metadata",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1789257600000,
+      "tag": "0021_mediation_session_voucher_production",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "7",
+      "when": 1789344000000,
+      "tag": "0022_party_required_form_delivery",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1789430400000,
+      "tag": "0023_financial_disclosure_structured_booklet",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1789516800000,
+      "tag": "0024_case_draft_financial_schedule",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1789603200000,
+      "tag": "0025_court_form_template_soft_delete",
+      "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "7",
+      "when": 1789689600000,
+      "tag": "0026_draft_financial_schedule_confirmation",
+      "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "7",
+      "when": 1789776000000,
+      "tag": "0027_post_session_review_gate",
+      "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "7",
+      "when": 1789862400000,
+      "tag": "0028_provider_aware_mediator_calendar",
+      "breakpoints": true
+    },
+    {
+      "idx": 29,
+      "version": "7",
+      "when": 1789948800000,
+      "tag": "0029_outlook_calendar_events",
+      "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "7",
+      "when": 1790035200000,
+      "tag": "0030_case_draft_financial_schedule_versions",
+      "breakpoints": true
+    },
+    {
+      "idx": 31,
+      "version": "7",
+      "when": 1790121600000,
+      "tag": "0031_case_proofing_items",
+      "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "7",
+      "when": 1790208000000,
+      "tag": "0032_case_proofing_item_cycles",
+      "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "7",
+      "when": 1790294400000,
+      "tag": "0033_case_closure_party_follow_up",
+      "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "7",
+      "when": 1790380800000,
+      "tag": "0034_manual_case_revenue",
+      "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "7",
+      "when": 1790467200000,
+      "tag": "0035_notification_shared_assignees",
+      "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "7",
+      "when": 1790553600000,
+      "tag": "0036_xero_owned_billing",
+      "breakpoints": true
+    },
+    {
+      "idx": 37,
+      "version": "7",
+      "when": 1790640000000,
+      "tag": "0037_case_confidential_flag",
+      "breakpoints": true
+    },
+    {
+      "idx": 38,
+      "version": "7",
+      "when": 1790640000001,
+      "tag": "0038_intake_first_contact_transition",
+      "breakpoints": true
+    },
+    {
+      "idx": 39,
+      "version": "7",
+      "when": 1790726400000,
+      "tag": "0039_case_closure_party_follow_up_schema_repair",
+      "breakpoints": true
+    },
+    {
+      "idx": 40,
+      "version": "7",
+      "when": 1790812800000,
+      "tag": "0040_case_complaints",
+      "breakpoints": true
+    },
+    {
+      "idx": 41,
+      "version": "7",
+      "when": 1790899200000,
+      "tag": "0041_legacy_client_import",
+      "breakpoints": true
+    },
+    {
+      "idx": 42,
+      "version": "7",
+      "when": 1790985600000,
+      "tag": "0042_repair_permission_defaults",
+      "breakpoints": true
+    },
+    {
+      "idx": 43,
+      "version": "7",
+      "when": 1791072000000,
+      "tag": "0043_mediator_role_qualification",
+      "breakpoints": true
+    },
+    {
+      "idx": 44,
+      "version": "7",
+      "when": 1791158400000,
+      "tag": "0044_appointment_calendar_sync_jobs",
+      "breakpoints": true
+    },
+    {
+      "idx": 45,
+      "version": "7",
+      "when": 1791244800000,
+      "tag": "0045_task_domain_separation",
+      "breakpoints": true
+    },
+    {
+      "idx": 46,
+      "version": "7",
+      "when": 1791331200000,
+      "tag": "0046_internal_task_calendar",
+      "breakpoints": true
+    },
+    {
+      "idx": 47,
+      "version": "7",
+      "when": 1791417600000,
+      "tag": "0047_manual_mediator_service_approval",
+      "breakpoints": true
+    },
+    {
+      "idx": 48,
+      "version": "7",
+      "when": 1791504000000,
+      "tag": "0048_case_email_composer",
+      "breakpoints": true
+    },
+    {
+      "idx": 49,
+      "version": "7",
+      "when": 1791590400000,
+      "tag": "0049_email_template_library",
+      "breakpoints": true
+    },
+    {
+      "idx": 50,
+      "version": "7",
+      "when": 1791676800000,
+      "tag": "0050_email_template_personalisation_repair",
+      "breakpoints": true
+    },
+    {
+      "idx": 51,
+      "version": "7",
+      "when": 1791763200000,
+      "tag": "0051_booking_time_basis",
+      "breakpoints": true
+    },
+    {
+      "idx": 52,
+      "version": "7",
+      "when": 1791849600000,
+      "tag": "0052_mediation_client_calendar_events",
+      "breakpoints": true
+    },
+    {
+      "idx": 53,
+      "version": "7",
+      "when": 1791936000000,
+      "tag": "0053_task_series",
+      "breakpoints": true
+    },
+    {
+      "idx": 54,
+      "version": "7",
+      "when": 1792022400000,
+      "tag": "0054_task_cancellation",
+      "breakpoints": true
+    },
+    {
+      "idx": 55,
+      "version": "7",
+      "when": 1792108800000,
+      "tag": "0055_service_catalogue_expansion",
+      "breakpoints": true
+    },
+    {
+      "idx": 56,
+      "version": "7",
+      "when": 1792195200000,
+      "tag": "0056_account_profiles",
+      "breakpoints": true
+    },
+    {
+      "idx": 57,
+      "version": "7",
+      "when": 1792195200001,
+      "tag": "0057_gmail_case_reply_sync",
+      "breakpoints": true
+    },
+    {
+      "idx": 58,
+      "version": "7",
+      "when": 1792195200002,
+      "tag": "0058_private_case_notes",
+      "breakpoints": true
+    },
+    {
+      "idx": 59,
+      "version": "7",
+      "when": 1792195200003,
+      "tag": "0059_case_whatsapp_messaging",
+      "breakpoints": true
+    },
+    {
+      "idx": 60,
+      "version": "7",
+      "when": 1792195200004,
+      "tag": "0060_legacy_open_case_import",
+      "breakpoints": true
+    },
+    {
+      "idx": 61,
+      "version": "7",
+      "when": 1792195200005,
+      "tag": "0061_per_service_mediator_role_qualification",
+      "breakpoints": true
+    },
+    {
+      "idx": 62,
+      "version": "7",
+      "when": 1792195200006,
+      "tag": "0062_proofing_gated_client_document_release",
+      "breakpoints": true
+    },
+    {
+      "idx": 63,
+      "version": "7",
+      "when": 1792195200007,
+      "tag": "0063_task_search_and_notification_inbox",
+      "breakpoints": true
+    },
+    {
+      "idx": 64,
+      "version": "7",
+      "when": 1792195200008,
+      "tag": "0064_calendar_availability_reconciliation",
+      "breakpoints": true
+    },
+    {
+      "idx": 65,
+      "version": "7",
+      "when": 1792195200009,
+      "tag": "0065_calendar_availability_window_states",
+      "breakpoints": true
+    },
+    {
+      "idx": 66,
+      "version": "7",
+      "when": 1792195200010,
+      "tag": "0066_dynamic_intake_follow_ups",
+      "breakpoints": true
+    },
+    {
+      "idx": 67,
+      "version": "7",
+      "when": 1792195200011,
+      "tag": "0067_dynamic_intake_due_alert_idempotency",
+      "breakpoints": true
+    },
+    {
+      "idx": 68,
+      "version": "7",
+      "when": 1792195200012,
+      "tag": "0064_session_draft_financial_schedules",
+      "breakpoints": true
+    },
+    {
+      "idx": 69,
+      "version": "7",
+      "when": 1792195200013,
+      "tag": "0068_e1_miam_availability_variables",
+      "breakpoints": true
+    },
+    {
+      "idx": 70,
+      "version": "7",
+      "when": 1792195200014,
+      "tag": "0069_case_document_requests",
+      "breakpoints": true
+    }
+  ]
+}
